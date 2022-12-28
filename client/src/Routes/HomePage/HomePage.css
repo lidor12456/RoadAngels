@@ -1,0 +1,15 @@
+.main-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff url("./assets/imgs/bg1.jpg")  no-repeat right top ;
+    background-size: cover;
+    /* padding: 15%; */
+    min-height:100vh;
+    border: 1px solid black;
+}
+@media (max-width: 768px) {
+    .main-page {
+        height: 100%;
+    }
+}
