@@ -10,7 +10,7 @@ import AdminNav from "./Component/AdminNav/AdminNav";
 import VolunteerNav from "./Component/VolunteerNav/VolunteerNav";
 
 function App() {
-  const [isAdminLogged, setIsAdminLogged] = useState(false);
+  const [isAdminLogged, setIsAdminLogged] = useState(true);
   const [isVolunteerLogged, setIsVolunteerLogged] = useState(false);
   return (
     <div className="App">

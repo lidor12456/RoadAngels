@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 
-const UsersSchema = new mongoose.Schema({
+const CallsSchema = new mongoose.Schema({
+  openingTime: { type: String },
+  subject: { type: String },
   name: { type: String },
-  role: { type: String },
   mail: { type: String },
   phone: { type: String },
   city: { type: String },
   region: { type: String },
-  takenCalls: { type: String },
   isDeleted: { type: Boolean },
 });
 
@@ -19,6 +19,6 @@ const UsersSchema = new mongoose.Schema({
 //   console.log({ instanceOf: this });
 // };
 
-const Users = mongoose.model("Users", UsersSchema);
+const Calls = mongoose.model("Calls", CallsSchema);
 
-export { Users };
+export { Calls };

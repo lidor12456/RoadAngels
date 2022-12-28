@@ -1,10 +1,18 @@
-import { addUserToMongo } from "../services/users.mongoose.js";
-import { Users, Calls } from "../models/user.model.js";
+import { addUserToMongo, addCallToMongo } from "../services/users.mongoose.js";
+import { Users } from "../models/user.model.js";
+import { Calls } from "../models/call.model.js";
 
 export const getAllUsers = async (req, res) => {
   try {
     const users = await Users.find({});
     res.status(200).send(users);
+  } catch {}
+};
+
+export const getAllCalls = async (req, res) => {
+  try {
+    const calls = await Calls.find({});
+    res.status(200).send(calls);
   } catch {}
 };
 
@@ -14,6 +22,13 @@ export const addUser = async (req, res) => {
 
   const newUser = await addUserToMongo(body);
   res.status(201).send(newUser);
+};
+export const addCall = async (req, res) => {
+  const body = req.body;
+  // console.log(body);
+
+  const newCall = await addCallToMongo(body);
+  res.status(201).send(newCall);
 };
 
 export const getUserById = async (req, res) => {
