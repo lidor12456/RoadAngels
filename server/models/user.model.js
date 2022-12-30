@@ -4,10 +4,10 @@ const UsersSchema = new mongoose.Schema({
   name: { type: String },
   role: { type: String },
   mail: { type: String },
-  phone: { type: String },
+  phone: { type: Number },
   city: { type: String },
   region: { type: String },
-  takenCalls: { type: String },
+  takenCalls: { type: Array },
   isDeleted: { type: Boolean },
 });
 

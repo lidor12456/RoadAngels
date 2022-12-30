@@ -7,6 +7,7 @@ import CallsTaken from "./Routes/CallsTaken/CallsTaken";
 import Volunteers from "./Routes/Volunteers/Volunteers";
 import HomePage from "./Routes/HomePage/HomePage";
 import E404 from "./Routes/E404/E404";
+import VolunteerPage from "./Routes/VolunteerPage/VolunteerPage";
 
 function IndexRoutes() {
   return (
@@ -20,6 +21,8 @@ function IndexRoutes() {
       <Route path="/opencalls" element={<OpenCalls />} />
       <Route path="/callstaken" element={<CallsTaken />} />
       <Route path="/volunteers" element={<Volunteers />} />
+      <Route path="/volunteers/:volunteerId" element={<VolunteerPage />} />
+
       <Route path="*" element={<E404 />} />
     </Routes>
   );

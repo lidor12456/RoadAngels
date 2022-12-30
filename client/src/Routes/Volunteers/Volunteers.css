@@ -1,0 +1,16 @@
+.user {
+    display: inline-flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    flex-wrap:wrap;
+   
+    
+}
+.user-info {
+    /* padding: 2%;
+    margin: 2%; */
+    border: 1px solid black;
+    /* height: 20%;
+    width: 20%; */
+}

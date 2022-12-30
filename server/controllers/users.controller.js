@@ -44,10 +44,11 @@ export const getUserById = async (req, res) => {
 
 export const updateUserById = async (req, res) => {
   const { id } = req.params;
+  const { role, takenCalls, name, mail, phone, city, region } = req.body;
   try {
     const updatedData = await Users.findByIdAndUpdate(
       id,
-      { cash: req.body.cash, credit: req.body.credit },
+      { role, takenCalls, name, mail, phone, city, region },
       { new: true }
     );
     res.status(201).send(updatedData);
