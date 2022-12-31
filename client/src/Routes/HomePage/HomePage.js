@@ -7,7 +7,8 @@ function HomePage() {
   return (
     <div className="main-page">
       <div className="bar">
-        <CitiesBar />
+        {/* <CitiesBar /> */}
+        HomePage
       </div>
     </div>
   );

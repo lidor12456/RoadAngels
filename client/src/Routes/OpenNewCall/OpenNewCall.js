@@ -8,6 +8,20 @@ function OpenNewCall() {
   const [errorMes, setErrorMes] = useState(null);
   const navigate = useNavigate();
 
+  const updateDateAndTime = () => {
+    const event = new Date();
+    const jsonDate = event.toUTCString();
+    setDetailsObj((prev) => {
+      const updateState = { ...prev };
+
+      updateState.openingTime = `${jsonDate}`;
+      // updateState.openingTime = `2012`;
+      console.log(detailsObj);
+      console.log(jsonDate);
+
+      return updateState;
+    });
+  };
   const handlerSubmitForm = async () => {
     try {
       setIsLoading(true);
@@ -19,8 +33,8 @@ function OpenNewCall() {
       );
 
       setIsLoading(false);
-      // TODO: NAVIGATE TO SOMEWHERE ELSE MORE USEFUL
-      navigate("/");
+      // // TODO: NAVIGATE TO SOMEWHERE ELSE MORE USEFUL
+      // navigate("/");
     } catch (e) {
       setErrorMes(e.message);
     }
@@ -116,7 +130,14 @@ function OpenNewCall() {
           }}
         ></input>
       </p>
-      <button onClick={handlerSubmitForm}>Submit Call</button>
+      <button
+        onClick={() => {
+          updateDateAndTime();
+          handlerSubmitForm();
+        }}
+      >
+        Submit Call
+      </button>
     </div>
   );
 }
