@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { Routes, Route, Link, useParams, useNavigate } from "react-router-dom";
+
 import axios from "axios";
 
-function OpenNewCall() {
+function AddVolunteer() {
   const [detailsObj, setDetailsObj] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [errorMes, setErrorMes] = useState(null);
@@ -12,34 +13,33 @@ function OpenNewCall() {
     try {
       setIsLoading(true);
       const { data } = await axios.post(
-        // "https://roadangels.onrender.com/api/addcall"
+        // "https://roadangels.onrender.com/api/adduser"
 
-        `http://localhost:5000/api/addcall`,
+        `http://localhost:5000/api/adduser`,
         detailsObj
       );
 
       setIsLoading(false);
-      // TODO: NAVIGATE TO SOMEWHERE ELSE MORE USEFUL
-      navigate("/");
+      navigate("/volunteers");
     } catch (e) {
       setErrorMes(e.message);
     }
   };
 
   return (
-    <div className="open-call-form">
+    <div className="user-form">
       {isLoading && <h1 className="">Spinner</h1>}
       {errorMes && <h2>{errorMes}</h2>}
-      <h1>Open New Call</h1>
+      <h1>Add Volunteer</h1>
       <p>
         {" "}
-        Subject -{" "}
+        role -{" "}
         <input
           onChange={({ target: { value } }) => {
             setDetailsObj((prev) => {
               const updateState = { ...prev };
 
-              updateState.subject = value;
+              updateState.role = value;
               return updateState;
             });
           }}
@@ -48,7 +48,7 @@ function OpenNewCall() {
 
       <p>
         {" "}
-        Name -{" "}
+        name -{" "}
         <input
           onChange={({ target: { value } }) => {
             setDetailsObj((prev) => {
@@ -62,7 +62,7 @@ function OpenNewCall() {
       </p>
       <p>
         {" "}
-        Mail -{" "}
+        mail -{" "}
         <input
           onChange={({ target: { value } }) => {
             setDetailsObj((prev) => {
@@ -76,7 +76,7 @@ function OpenNewCall() {
       </p>
       <p>
         {" "}
-        Phone -{" "}
+        phone -{" "}
         <input
           onChange={({ target: { value } }) => {
             setDetailsObj((prev) => {
@@ -90,7 +90,7 @@ function OpenNewCall() {
       </p>
       <p>
         {" "}
-        City -{" "}
+        city -{" "}
         <input
           onChange={({ target: { value } }) => {
             setDetailsObj((prev) => {
@@ -104,7 +104,7 @@ function OpenNewCall() {
       </p>
       <p>
         {" "}
-        Region -{" "}
+        region -{" "}
         <input
           onChange={({ target: { value } }) => {
             setDetailsObj((prev) => {
@@ -116,9 +116,9 @@ function OpenNewCall() {
           }}
         ></input>
       </p>
-      <button onClick={handlerSubmitForm}>Submit Call</button>
+      <button onClick={handlerSubmitForm}>Submit Volunteer</button>
     </div>
   );
 }
 
-export default OpenNewCall;
+export default AddVolunteer;

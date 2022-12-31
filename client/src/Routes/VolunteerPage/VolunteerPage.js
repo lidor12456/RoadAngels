@@ -15,9 +15,9 @@ function VolunteerPage() {
       try {
         setIsLoading(true);
         const { data } = await axios.get(
-          // "https://roadangels.onrender.com/api/${params.volunteerId}"
+          // "https://roadangels.onrender.com/api/users/${params.volunteerId}"
 
-          `http://localhost:5000/api/${params.volunteerId}`
+          `http://localhost:5000/api/users/${params.volunteerId}`
         );
         console.log(data);
         setVolunteerArr([data]);
@@ -32,13 +32,14 @@ function VolunteerPage() {
     try {
       setIsLoading(true);
       const { data } = await axios.put(
-        // "https://roadangels.onrender.com/api/update/${params.volunteerId}"
+        // "https://roadangels.onrender.com/api/updateuser/${params.volunteerId}"
 
-        `http://localhost:5000/api/update/${params.volunteerId}`,
+        `http://localhost:5000/api/updateuser/${params.volunteerId}`,
         detailsObj
       );
 
       setIsLoading(false);
+      navigate("/volunteers");
     } catch (e) {
       setErrorMes(e.message);
     }
@@ -46,8 +47,8 @@ function VolunteerPage() {
   return (
     <div className="users">
       {isLoading && <h1 className="">Spinner</h1>}
-      <h1>{volunteerArr[0] && volunteerArr[0].name}</h1>
       {errorMes && <h2>{errorMes}</h2>}
+      <h1>{volunteerArr[0] && volunteerArr[0].name}</h1>
 
       {setVolunteerArr.length && (
         <div className="users-container">

@@ -41,6 +41,16 @@ export const getUserById = async (req, res) => {
     res.status(404).send({ message: error.message });
   }
 };
+export const getCallById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const user = await Calls.findById(id);
+    res.status(200).send(user);
+  } catch (error) {
+    res.status(404).send({ message: error.message });
+  }
+};
 
 export const updateUserById = async (req, res) => {
   const { id } = req.params;
@@ -49,6 +59,20 @@ export const updateUserById = async (req, res) => {
     const updatedData = await Users.findByIdAndUpdate(
       id,
       { role, takenCalls, name, mail, phone, city, region },
+      { new: true }
+    );
+    res.status(201).send(updatedData);
+  } catch (error) {
+    res.status(404).send({ message: error.message });
+  }
+};
+export const updateCallById = async (req, res) => {
+  const { id } = req.params;
+  const { openingTime, subject, name, mail, phone, city, region } = req.body;
+  try {
+    const updatedData = await Calls.findByIdAndUpdate(
+      id,
+      { openingTime, subject, name, mail, phone, city, region },
       { new: true }
     );
     res.status(201).send(updatedData);

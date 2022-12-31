@@ -12,7 +12,8 @@ function OpenCalls() {
       try {
         setIsLoading(true);
         const { data } = await axios.get(
-          "https://roadangels.onrender.com/api/allcalls"
+          `http://localhost:5000/api/allcalls`
+          // "https://roadangels.onrender.com/api/allcalls"
         );
         console.log(data);
         setCallsArr(data);
@@ -48,6 +49,9 @@ function OpenCalls() {
                   <p> phone - {phone}</p>
                   <p> city - {city}</p>
                   <p> region - {region}</p>
+                  <Link to={`/opencalls/${_id}`}>
+                    <button className="edit-btn">edit</button>
+                  </Link>
                 </div>
               </div>
             )
