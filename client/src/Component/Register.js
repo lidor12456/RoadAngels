@@ -53,6 +53,10 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [city, setCity] = useState("");
+  const [region, setRegion] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -60,15 +64,31 @@ const Register = () => {
     const username = e.target.value;
     setUsername(username);
   };
+  const onChangePassword = (e) => {
+    const password = e.target.value;
+    setUsername(password);
+  };
 
   const onChangeEmail = (e) => {
     const email = e.target.value;
     setEmail(email);
   };
 
-  const onChangePassword = (e) => {
-    const password = e.target.value;
-    setPassword(password);
+  const onChangeName = (e) => {
+    const name = e.target.value;
+    setName(name);
+  };
+  const onChangePhone = (e) => {
+    const phone = e.target.value;
+    setPhone(phone);
+  };
+  const onChangeCity = (e) => {
+    const city = e.target.value;
+    setCity(city);
+  };
+  const onChangeRegion = (e) => {
+    const region = e.target.value;
+    setPassword(region);
   };
 
   const handleRegister = (e) => {
@@ -80,7 +100,15 @@ const Register = () => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      AuthService.register(username, email, password).then(
+      AuthService.register(
+        username,
+        email,
+        password,
+        name,
+        phone,
+        city,
+        region
+      ).then(
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);
@@ -145,6 +173,46 @@ const Register = () => {
                   value={password}
                   onChange={onChangePassword}
                   validations={[required, vpassword]}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="Name">Name</label>
+                <Input
+                  type="text"
+                  className="form-control"
+                  name="name"
+                  value={name}
+                  onChange={onChangeName}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="Phone">Phone</label>
+                <Input
+                  type="tel"
+                  className="form-control"
+                  name="phone"
+                  value={phone}
+                  onChange={onChangePhone}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="City">City</label>
+                <Input
+                  type="text"
+                  className="form-control"
+                  name="city"
+                  value={city}
+                  onChange={onChangeCity}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="Region">Region</label>
+                <Input
+                  type="text"
+                  className="form-control"
+                  name="region"
+                  value={region}
+                  onChange={onChangeRegion}
                 />
               </div>
 

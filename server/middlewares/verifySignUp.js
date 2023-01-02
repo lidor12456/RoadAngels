@@ -1,4 +1,4 @@
-const db = require("../db/mongoose");
+const { db } = require("../db/mongoose.js");
 const ROLES = db.ROLES;
 // const Users = db.user;
 const { Users } = require("../models/user.model.js");
@@ -40,7 +40,8 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
 checkRolesExisted = (req, res, next) => {
   if (req.body.roles) {
     for (let i = 0; i < req.body.roles.length; i++) {
-      if (!ROLES.includes(req.body.roles[i])) {
+      console.log(db.ROLES);
+      if (!db.ROLES.includes(req.body.roles[i])) {
         res.status(400).send({
           message: `Failed! Role ${req.body.roles[i]} does not exist!`,
         });

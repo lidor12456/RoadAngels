@@ -9,12 +9,14 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcrypt");
 
 exports.signup = (req, res) => {
-  // console.log(req.body.roles);
-  console.log(req.body.username, req.body.email, req.body.password);
   const user = new Users({
     username: req.body.username,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 8),
+    name: req.body.name,
+    phone: req.body.phone,
+    city: req.body.city,
+    region: req.body.region,
   });
 
   user.save((err, user) => {
@@ -46,13 +48,15 @@ exports.signup = (req, res) => {
         }
       );
     } else {
+      console.log(Role);
+
       Role.findOne({ name: "user" }, (err, role) => {
         if (err) {
           res.status(500).send({ message: err });
           return;
         }
 
-        user.roles = [role._id];
+        // user.roles = [role._id];
         user.save((err) => {
           if (err) {
             res.status(500).send({ message: err });
