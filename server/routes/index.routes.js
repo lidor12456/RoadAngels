@@ -1,6 +1,7 @@
-import { Router } from "express";
-import cors from "cors";
-import {
+const { Router } = require("express");
+const cors = require("cors");
+
+const {
   getAllUsers,
   getAllCalls,
   addUser,
@@ -13,9 +14,10 @@ import {
   getAllNotDeletedCalls,
   // transferCash,
   // depotsCash,
-} from "../controllers/users.controller.js";
-import { userAuth } from "../middlewares/auth.middleware.js";
-export const indexRoute = Router();
+} = require("../controllers/users.controller.js");
+
+// import { userAuth } from "../middlewares/auth.middleware.js";
+const indexRoute = Router();
 
 indexRoute.get("/allusers", cors(), getAllUsers);
 indexRoute.get("/allcalls", cors(), getAllCalls);
@@ -29,3 +31,7 @@ indexRoute.put("/updatecall/:id", cors(), updateCallById);
 // indexRoute.put("/depots/:id", cors(), depotsCash);
 // indexRoute.post("/transfercash/:firstId/:secondId", cors(), transferCash);
 indexRoute.delete("/delete/:id", cors(), deleteUser);
+
+module.exports = {
+  indexRoute,
+};

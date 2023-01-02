@@ -1,7 +1,7 @@
-import { Users } from "../models/user.model.js";
-import { Calls } from "../models/call.model.js";
+const { Users } = require("../models/user.model.js");
+const { Calls } = require("../models/call.model.js");
 
-export const addUserToMongo = async (userObj) => {
+const addUserToMongo = async (userObj) => {
   const newUser = await Users.create(userObj);
   //   const newUser = new User(userObj); // sync
   //   newUser.save(); //async
@@ -9,11 +9,15 @@ export const addUserToMongo = async (userObj) => {
   // newUser.instanceOf();
   return newUser;
 };
-export const addCallToMongo = async (userObj) => {
+const addCallToMongo = async (userObj) => {
   const newCall = await Calls.create(userObj);
   //   const newUser = new User(userObj); // sync
   //   newUser.save(); //async
   // User.printSome();
   // newUser.instanceOf();
   return newCall;
+};
+module.exports = {
+  addUserToMongo,
+  addCallToMongo,
 };

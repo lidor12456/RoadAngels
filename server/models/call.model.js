@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const CallsSchema = new mongoose.Schema({
   openingTime: { type: String },
@@ -21,4 +21,6 @@ const CallsSchema = new mongoose.Schema({
 
 const Calls = mongoose.model("Calls", CallsSchema);
 
-export { Calls };
+module.exports = {
+  Calls,
+};

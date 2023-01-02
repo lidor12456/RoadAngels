@@ -1,8 +1,13 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const UsersSchema = new mongoose.Schema({
   name: { type: String },
-  role: { type: String },
+  roles: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Role",
+    },
+  ],
   mail: { type: String },
   phone: { type: Number },
   city: { type: String },
@@ -21,4 +26,6 @@ const UsersSchema = new mongoose.Schema({
 
 const Users = mongoose.model("Users", UsersSchema);
 
-export { Users };
+module.exports = {
+  Users,
+};

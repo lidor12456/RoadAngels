@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route, Link, useParams, Navigate } from "react-router-dom";
 import OpenNewCall from "./Routes/OpenNewCall/OpenNewCall";
-import Login from "./Routes/Login/Login";
+// import Login from "./Routes/Login/Login";
 import OpenCalls from "./Routes/OpenCalls/OpenCalls";
 import CallsTaken from "./Routes/CallsTaken/CallsTaken";
 import Volunteers from "./Routes/Volunteers/Volunteers";
@@ -10,6 +10,18 @@ import E404 from "./Routes/E404/E404";
 import VolunteerPage from "./Routes/VolunteerPage/VolunteerPage";
 import AddVolunteer from "./Routes/AddVolunteer/AddVolunteer";
 import Call from "./Routes/Call/Call";
+
+/**/
+
+import Login from "./Component/Login";
+import Register from "./Component/Register";
+import Home from "./Component/Home";
+import Profile from "./Component/Profile";
+import BoardUser from "./Component/BoardUser";
+import BoardModerator from "./Component/BoardModerator";
+import BoardAdmin from "./Component/BoardAdmin";
+
+/**/
 
 function IndexRoutes() {
   return (
@@ -24,6 +36,15 @@ function IndexRoutes() {
       <Route path="/volunteers" element={<Volunteers />} />
       <Route path="/volunteers/:volunteerId" element={<VolunteerPage />} />
       <Route path="/volunteer/addvolunteer" element={<AddVolunteer />} />
+
+      {/* <Route path="/" element={<Home/>} /> */}
+      <Route path="/home" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/user" element={<BoardUser />} />
+      <Route path="/mod" element={<BoardModerator />} />
+      <Route path="/admin" element={<BoardAdmin />} />
 
       <Route path="*" element={<E404 />} />
     </Routes>
