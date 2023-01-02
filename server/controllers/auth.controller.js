@@ -1,12 +1,16 @@
 const config = require("../config/auth.config");
 const db = require("../models");
-const Users = db.user;
-const Role = db.role;
+// const Users = db.user;
+const { Users } = require("../models/user.model.js");
+const { Role } = require("../models/role.model.js");
+// const Role = db.role;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcrypt");
 
 exports.signup = (req, res) => {
+  // console.log(req.body.roles);
+  console.log(req.body.username, req.body.email, req.body.password);
   const user = new Users({
     username: req.body.username,
     email: req.body.email,

@@ -9,10 +9,22 @@
 //     console.log({ host, port, name });
 //   }
 // });
-const initial = require("../app.js");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
+const db = {};
+
+db.mongoose = mongoose;
+
+db.user = require("../models/user.model");
+db.role = require("../models/role.model");
+
+db.ROLES = ["user", "admin", "moderator"];
+// console.log(db);
+module.exports = {
+  db,
+};
+const initial = require("../app.js");
 
 // `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.xdyb6xu.mongodb.net/?retryWrites=true&w=majority`;
 

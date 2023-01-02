@@ -1,6 +1,7 @@
-const db = require("../models");
+const db = require("../db/mongoose");
 const ROLES = db.ROLES;
-const Users = db.user;
+// const Users = db.user;
+const { Users } = require("../models/user.model.js");
 
 checkDuplicateUsernameOrEmail = (req, res, next) => {
   // Username
