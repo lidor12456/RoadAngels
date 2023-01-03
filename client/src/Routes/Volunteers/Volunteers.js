@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { Routes, Route, Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import styles from "./Volunteers.css";
+import "./Volunteers.css";
+import UserService from "../../services/user.service";
+import EventBus from "../../common/EventBus";
 
 function Volunteers() {
+  const [content, setContent] = useState("");
+
   const [volunteersArr, setVolunteersArr] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMes, setErrorMes] = useState(null);
@@ -11,6 +15,7 @@ function Volunteers() {
 
   useEffect(() => {
     const fetchData = async () => {
+      setContent(null);
       try {
         setIsLoading(true);
         const { data } = await axios.get(
@@ -24,49 +29,94 @@ function Volunteers() {
       } catch (e) {
         setErrorMes(e.message);
       }
+
+      UserService.getModeratorBoard().then(
+        (response) => {
+          setContent(response.data);
+        },
+        (error) => {
+          const _content =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          setContent(_content);
+
+          if (error.response && error.response.status === 401) {
+            EventBus.dispatch("logout");
+          }
+        }
+      );
+      UserService.getAdminBoard().then(
+        (response) => {
+          setContent(response.data);
+        },
+        (error) => {
+          const _content =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          setContent(_content);
+
+          if (error.response && error.response.status === 401) {
+            EventBus.dispatch("logout");
+          }
+        }
+      );
     };
     fetchData();
   }, []);
 
   return (
     <div className="users">
-      <h1>Volunteers</h1>
-      {errorMes && <h2>{errorMes}</h2>}
-
-      {isLoading && <h1 className="">Spinner</h1>}
-      {setVolunteersArr.length && (
-        <div className="users-container">
-          {volunteersArr.map(
-            (
-              { _id, name, role, takenCalls, email, phone, city, region },
-              mapIndex
-            ) => (
-              <div className="user" key={_id}>
-                {console.log(volunteersArr)}
-                <div className="user-info">
-                  <p> role - {role}</p>
-                  <p> takenCalls - {takenCalls.length}</p>
-                  <p> Name - {name}</p>
-                  <p> mail - {email}</p>
-                  <p> phone - {`0${phone}`}</p>
-                  <p> city - {city}</p>
-                  <p> region - {region}</p>
-                  <Link to={`/volunteers/${_id}`}>
-                    <button className="edit-btn">edit</button>
-                  </Link>
-                </div>
-              </div>
-            )
+      {content == "Volunteer Content." || content == "Admin Content." ? (
+        <div>
+          <h1>Volunteers</h1>
+          {console.log(content)}
+          {errorMes && <h2>{errorMes}</h2>}
+          {isLoading && <h1 className="">Spinner</h1>}
+          {setVolunteersArr.length && (
+            <div className="users-container">
+              {volunteersArr.map(
+                (
+                  { _id, name, role, takenCalls, email, phone, city, region },
+                  mapIndex
+                ) => (
+                  <div className="user" key={_id}>
+                    {console.log(volunteersArr)}
+                    <div className="user-info">
+                      <p> role - {role}</p>
+                      <p> takenCalls - {takenCalls.length}</p>
+                      <p> Name - {name}</p>
+                      <p> mail - {email}</p>
+                      <p> phone - {`0${phone}`}</p>
+                      <p> city - {city}</p>
+                      <p> region - {region}</p>
+                      <Link to={`/volunteers/${_id}`}>
+                        <button className="edit-btn">edit</button>
+                      </Link>
+                    </div>
+                  </div>
+                )
+              )}
+            </div>
           )}
+          <button
+            onClick={() => {
+              navigate("/volunteer/addvolunteer");
+            }}
+          >
+            Add Volunteer
+          </button>
         </div>
+      ) : (
+        "no access"
       )}
-      <button
-        onClick={() => {
-          navigate("/volunteer/addvolunteer");
-        }}
-      >
-        Add Volunteer
-      </button>
     </div>
   );
 }

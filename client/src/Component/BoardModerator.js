@@ -31,7 +31,8 @@ const BoardModerator = () => {
 
   return (
     <div className="container">
-      <VolunteerNav />
+      {content === "Volunteer Content." ? <VolunteerNav /> : ""}
+
       <header className="jumbotron">
         <h3>{content}</h3>
       </header>

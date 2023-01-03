@@ -33,4 +33,23 @@
     }
     */
     
+  .container {
+    min-width: 100vw !important;
+    padding: 0%;
+  }
   
+  .bg-primary {
+    background-color: rgb(251, 255, 7) !important;
+    
+
+  }
+  .vol-nav .navbar-dark {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+  }
+  .vol-nav .navbar-dark .navbar-nav .nav-link {
+    color: rgb(0, 0, 0);
+    /* font-size: 15px; */
+
+}

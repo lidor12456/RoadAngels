@@ -1,16 +1,13 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { Routes, Route, Link, useParams } from "react-router-dom";
-import axios from "axios";
-import styles from "./VolunteerNav.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import "./VolunteerNav.css";
 function VolunteerNav() {
   return (
-    <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <div className="navbar-nav mr-auto ml-auto">
-          {/* <ul className="nav__ul"> */}
-          <li className="nav-item">
+    <div className="vol-nav">
+      <nav className="navbar navbar-expand navbar-dark bg-primary ">
+        <div className="navbar-nav ml-auto ">
+          <li className="nav-item dark">
             <Link to="/opencalls" className="nav-link">
               Open Calls
             </Link>
@@ -21,8 +18,6 @@ function VolunteerNav() {
               Calls Taken
             </Link>
           </li>
-          <li className="nav-item">Hello Volunteer</li>
-          {/* </ul> */}
         </div>
       </nav>
     </div>

@@ -1,36 +1,20 @@
-/*.nav {
-    font-family:"Comic Sans MS", cursive, sans-serif;
-    background-color: rgba(9, 56, 56, 0.89);;
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      padding: 5px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.38);
-     
-    }
-    
-    .nav__ul {
-      display: flex;
-      flex-wrap: wrap;
-    }
-    .nav__li {
-      list-style: none;
-      text-transform: capitalize;
-      background-color: transparent;
-      padding: 0.6rem 0.6rem;
-      margin: auto 0.5rem;
-      border: 1px solid rgb(252, 252, 254);
-      border-radius: 20px;
-    }
+.container {
+  min-width: 100vw !important;
+  padding: 0%;
+}
 
-    .nav__li a {
-      text-decoration: none;
-      color: whitesmoke;
-    }
-    .nav__li:hover {
-      background-color: rgba(58, 75, 98, 0.654);
-      color: white;
-    }
-    */
-    
+.bg-primary {
+  background-color: rgb(251, 255, 7) !important;
   
+
+}
+.admin-nav .navbar-dark {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.admin-nav .navbar-dark .navbar-nav .nav-link {
+  color: rgb(0, 0, 0);
+  /* font-size: 15px; */
+
+}

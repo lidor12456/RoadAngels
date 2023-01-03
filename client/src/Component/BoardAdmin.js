@@ -31,7 +31,7 @@ const BoardAdmin = () => {
 
   return (
     <div className="container">
-      <AdminNav />
+      {content === "Admin Content." ? <AdminNav /> : ""}
       <header className="jumbotron">
         <h3>{content}</h3>
       </header>
