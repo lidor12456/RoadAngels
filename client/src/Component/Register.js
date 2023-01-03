@@ -66,7 +66,7 @@ const Register = () => {
   };
   const onChangePassword = (e) => {
     const password = e.target.value;
-    setUsername(password);
+    setPassword(password);
   };
 
   const onChangeEmail = (e) => {
@@ -88,7 +88,7 @@ const Register = () => {
   };
   const onChangeRegion = (e) => {
     const region = e.target.value;
-    setPassword(region);
+    setRegion(region);
   };
 
   const handleRegister = (e) => {

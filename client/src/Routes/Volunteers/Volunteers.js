@@ -38,7 +38,7 @@ function Volunteers() {
         <div className="users-container">
           {volunteersArr.map(
             (
-              { _id, name, role, takenCalls, mail, phone, city, region },
+              { _id, name, role, takenCalls, email, phone, city, region },
               mapIndex
             ) => (
               <div className="user" key={_id}>
@@ -47,8 +47,8 @@ function Volunteers() {
                   <p> role - {role}</p>
                   <p> takenCalls - {takenCalls.length}</p>
                   <p> Name - {name}</p>
-                  <p> mail - {mail}</p>
-                  <p> phone - {phone}</p>
+                  <p> mail - {email}</p>
+                  <p> phone - {`0${phone}`}</p>
                   <p> city - {city}</p>
                   <p> region - {region}</p>
                   <Link to={`/volunteers/${_id}`}>

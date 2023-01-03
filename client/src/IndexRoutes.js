@@ -15,7 +15,7 @@ import Call from "./Routes/Call/Call";
 
 import Login from "./Component/Login";
 import Register from "./Component/Register";
-import Home from "./Component/Home";
+// import Home from "./Component/Home";
 import Profile from "./Component/Profile";
 import BoardUser from "./Component/BoardUser";
 import BoardModerator from "./Component/BoardModerator";
@@ -37,8 +37,7 @@ function IndexRoutes() {
       <Route path="/volunteers/:volunteerId" element={<VolunteerPage />} />
       <Route path="/volunteer/addvolunteer" element={<AddVolunteer />} />
 
-      {/* <Route path="/" element={<Home/>} /> */}
-      <Route path="/home" element={<Home />} />
+      {/* <Route path="/home" element={<Home />} /> */}
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/profile" element={<Profile />} />

@@ -10,7 +10,7 @@ import AdminNav from "./Component/AdminNav/AdminNav";
 import VolunteerNav from "./Component/VolunteerNav/VolunteerNav";
 
 /**/
-import TestLogin from "./Component/TestLogin/TestLogin";
+import ContentManager from "./Component/ContentManager/ContentManager";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import AuthService from "./services/auth.service";
 
@@ -25,15 +25,15 @@ import TestLogin from "./Component/TestLogin/TestLogin";
 // import EventBus from "./common/EventBus";
 /**/
 function App() {
-  const [isAdminLogged, setIsAdminLogged] = useState(true);
-  const [isVolunteerLogged, setIsVolunteerLogged] = useState(false);
+  // const [isAdminLogged, setIsAdminLogged] = useState(true);
+  // const [isVolunteerLogged, setIsVolunteerLogged] = useState(false);
   return (
     <div className="App">
-      {isAdminLogged && <AdminNav />}
+      <ContentManager />
+      {/* {isAdminLogged && <AdminNav />}
       {isVolunteerLogged && <VolunteerNav />}
-      {!isVolunteerLogged && !isAdminLogged ? <GeneralNav /> : ""}
+      {!isVolunteerLogged && !isAdminLogged ? <GeneralNav /> : ""} */}
       <IndexRoutes />
-      <TestLogin />
     </div>
   );
 }

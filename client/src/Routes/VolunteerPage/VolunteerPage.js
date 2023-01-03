@@ -54,7 +54,7 @@ function VolunteerPage() {
         <div className="users-container">
           {volunteerArr.map(
             (
-              { _id, name, role, takenCalls, mail, phone, city, region },
+              { _id, name, role, takenCalls, email, phone, city, region },
               mapIndex
             ) => (
               <div className="user" key={_id}>
@@ -95,7 +95,7 @@ function VolunteerPage() {
                     {" "}
                     mail -{" "}
                     <input
-                      placeholder={mail}
+                      placeholder={email}
                       onChange={({ target: { value } }) => {
                         setDetailsObj((prev) => {
                           const updateState = { ...prev };

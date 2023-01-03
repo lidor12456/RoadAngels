@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import UserService from "../services/user.service";
 import EventBus from "../common/EventBus";
+import VolunteerNav from "./VolunteerNav/VolunteerNav";
 
 const BoardModerator = () => {
   const [content, setContent] = useState("");
@@ -30,6 +31,7 @@ const BoardModerator = () => {
 
   return (
     <div className="container">
+      <VolunteerNav />
       <header className="jumbotron">
         <h3>{content}</h3>
       </header>
