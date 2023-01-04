@@ -60,6 +60,7 @@ const Register = () => {
   const [region, setRegion] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState("");
 
   const onChangeUsername = (e) => {
     const username = e.target.value;
@@ -93,6 +94,8 @@ const Register = () => {
   };
 
   const handleRegister = (e) => {
+    setIsLoading(true);
+
     e.preventDefault();
 
     setMessage("");
@@ -111,6 +114,7 @@ const Register = () => {
         region
       ).then(
         (response) => {
+          setIsLoading(false);
           setMessage(response.data.message);
           setSuccessful(true);
         },
@@ -131,6 +135,8 @@ const Register = () => {
 
   return (
     <div className="rr-main col-md-12">
+      {isLoading && <h1 className="spinner">Spinner</h1>}
+
       <div className="">
         {/* <img
           src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
