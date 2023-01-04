@@ -1,7 +1,8 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/auth/";
-
+const API_URL =
+  // "http://localhost:5000/api/auth/"
+  "https://roadangels.onrender.com/api/auth/";
 const register = (username, email, password, name, phone, city, region) => {
   return axios.post(API_URL + "signup", {
     username,
