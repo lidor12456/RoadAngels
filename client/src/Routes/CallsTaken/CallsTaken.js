@@ -31,29 +31,32 @@ function CallsTaken() {
           setCurrentUser(user);
         }
         setIsLoading(true);
+        console.log(currentUser);
         const { data } = await axios.get(
           `http://localhost:5000/api/users/${currentUser.id}`
           // "http://localhost:5000/api/users/${currentUser.id}"
         );
-        setCallsArr(data);
-        setIsLoading(false);
-        const idList = data.takenCalls;
-        console.log(idList);
-        const userCalls = [];
-        for (let i = 0; i < data.takenCalls.length; i++) {
-          const { userCallsData } = await axios.get(
-            `http://localhost:5000/api/calls/${idList[i]}`
-            // "http://localhost:5000/api/calls/${currentUser.id}"
-          );
-          // console.log(userCallsData);
+        // console.log(data);
 
-          setCallsArr((prev) => {
-            return [userCallsData];
-          });
-        }
+        setCallsArr(data.takenCalls);
+        setIsLoading(false);
+        const test = callsArr[1];
+        // JSON.parse(test);
         console.log(callsArr);
+        console.log(test);
+        const userCalls = [];
+        // for (let i = 0; i < callsArr.length; i++) {
+        const { userCallsData } = await axios.get(
+          `http://localhost:5000/api/calls/${test}`
+          // "http://localhost:5000/api/calls/${currentUser.id}"
+        );
+        userCalls.push(userCallsData);
+
+        // }
+        console.log(userCalls);
       } catch (e) {
         setErrorMes(e.message);
+        console.log(e.message);
       }
 
       // await axios.get(
@@ -64,7 +67,7 @@ function CallsTaken() {
       UserService.getModeratorBoard().then(
         (response) => {
           setContent(response.data);
-          console.log(response);
+          // console.log(response);
         },
         (error) => {
           const _content =
@@ -106,8 +109,16 @@ function CallsTaken() {
 
   return (
     <div>
+      {isLoading && <h1 className="spinner">Spinner</h1>}
+      {errorMes && <h2>{errorMes}</h2>}
+
       {content == "Volunteer Content." || content == "Admin Content." ? (
-        <div>CallsTaken</div>
+        <div>
+          {callsArr &&
+            callsArr.map((call) => {
+              return <p>{call}</p>;
+            })}
+        </div>
       ) : (
         "no access"
       )}

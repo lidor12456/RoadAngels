@@ -32,8 +32,8 @@ function OpenCallsVal() {
         }
         setIsLoading(true);
         const { data } = await axios.get(
-          `http://localhost:5000/api/notdeletedcalls`
-          // "https://roadangels.onrender.com/api/allcalls"
+          // `http://localhost:5000/api/notdeletedcalls`
+          "https://roadangels.onrender.com/api/notdeletedcalls"
         );
         console.log(data);
         setCallsArr(data);
@@ -90,9 +90,9 @@ function OpenCallsVal() {
     try {
       setIsLoading(true);
       const { data } = await axios.put(
-        // "https://roadangels.onrender.com/api/updateuserarray/${userId}"
+        "https://roadangels.onrender.com/api/updateuserarray/${userId}",
 
-        `http://localhost:5000/api/updateuserarray/${userId}`,
+        // `http://localhost:5000/api/updateuserarray/${userId}`,
         { takenCalls: callId }
       );
       console.log(callsArr);
@@ -133,7 +133,7 @@ function OpenCallsVal() {
           </h1>
           {errorMes && <h2>{errorMes}</h2>}
 
-          {isLoading && <h1 className="">Spinner</h1>}
+          {isLoading && <h1 className="spinner">Spinner</h1>}
           {setCallsArr.length && (
             <div className="card-group">
               {callsArr.map(

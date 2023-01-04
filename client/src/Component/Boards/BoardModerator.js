@@ -8,7 +8,7 @@ import "./Boards.css";
 
 const BoardModerator = () => {
   const [content, setContent] = useState("");
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   useEffect(() => {
     UserService.getModeratorBoard().then(
       (response) => {
@@ -39,7 +39,7 @@ const BoardModerator = () => {
           <button
             className="ba btn btn-success btn-block mb-4 m-5 p-3"
             onClick={() => {
-              navigate("/opencallsvol");
+              navigate("/opencallsval");
             }}
           >
             Open Calls

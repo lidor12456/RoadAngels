@@ -16,9 +16,9 @@ function VolunteerPage() {
       try {
         setIsLoading(true);
         const { data } = await axios.get(
-          // "https://roadangels.onrender.com/api/users/${params.volunteerId}"
+          `https://roadangels.onrender.com/api/users/${params.volunteerId}`
 
-          `http://localhost:5000/api/users/${params.volunteerId}`
+          // `http://localhost:5000/api/users/${params.volunteerId}`
         );
         console.log(data);
         setVolunteerArr([data]);
@@ -33,9 +33,9 @@ function VolunteerPage() {
     try {
       setIsLoading(true);
       const { data } = await axios.put(
-        // "https://roadangels.onrender.com/api/updateuser/${params.volunteerId}"
+        `https://roadangels.onrender.com/api/updateuser/${params.volunteerId}`,
 
-        `http://localhost:5000/api/updateuser/${params.volunteerId}`,
+        // `http://localhost:5000/api/updateuser/${params.volunteerId}`,
         detailsObj
       );
 

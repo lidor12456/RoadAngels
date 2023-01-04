@@ -24,8 +24,8 @@ function OpenCalls() {
       try {
         setIsLoading(true);
         const { data } = await axios.get(
-          `http://localhost:5000/api/notdeletedcalls`
-          // "https://roadangels.onrender.com/api/allcalls"
+          // `http://localhost:5000/api/notdeletedcalls`
+          "https://roadangels.onrender.com/api/notdeletedcalls"
         );
         console.log(data);
         setCallsArr(data);
@@ -79,9 +79,9 @@ function OpenCalls() {
     try {
       setIsLoading(true);
       const { data } = await axios.put(
-        // "https://roadangels.onrender.com/api/updatecall/${id}"
+        "https://roadangels.onrender.com/api/updatecall/${id}",
 
-        `http://localhost:5000/api/updatecall/${id}`,
+        // `http://localhost:5000/api/updatecall/${id}`,
         { isDeleted: true }
       );
 

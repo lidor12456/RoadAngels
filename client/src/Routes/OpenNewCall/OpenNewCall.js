@@ -14,9 +14,9 @@ function OpenNewCall() {
     try {
       setIsLoading(true);
       const { data } = await axios.post(
-        // "https://roadangels.onrender.com/api/addcall"
+        "https://roadangels.onrender.com/api/addcall",
 
-        `http://localhost:5000/api/addcall`,
+        // `http://localhost:5000/api/addcall`,
         detailsObj
       );
 
@@ -30,7 +30,7 @@ function OpenNewCall() {
 
   return (
     <div className="open-call-form col-md-12">
-      {isLoading && <h1 className="">Spinner</h1>}
+      {isLoading && <h1 className="spinner">Spinner</h1>}
       {errorMes && <h2>{errorMes}</h2>}
       <h1>Open New Call</h1>
       <div className="onc form-group">

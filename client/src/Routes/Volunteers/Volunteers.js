@@ -20,9 +20,9 @@ function Volunteers() {
       try {
         setIsLoading(true);
         const { data } = await axios.get(
-          // "https://roadangels.onrender.com/api/allusers"
+          "https://roadangels.onrender.com/api/allusers"
 
-          "http://localhost:5000/api/allusers"
+          // "http://localhost:5000/api/allusers"
         );
         console.log(data);
         setVolunteersArr(data);
@@ -80,7 +80,7 @@ function Volunteers() {
           <h1>Volunteers</h1>
           {console.log(content)}
           {errorMes && <h2>{errorMes}</h2>}
-          {isLoading && <h1 className="">Spinner</h1>}
+          {isLoading && <h1 className="spinner">Spinner</h1>}
           {setVolunteersArr.length && (
             <div className="vs card-group">
               {volunteersArr.map(

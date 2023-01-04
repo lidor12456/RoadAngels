@@ -17,9 +17,9 @@ function Call() {
       try {
         setIsLoading(true);
         const { data } = await axios.get(
-          // "https://roadangels.onrender.com/api/calls/${params.callId}"
+          `https://roadangels.onrender.com/api/calls/${params.callId}`
 
-          `http://localhost:5000/api/calls/${params.callId}`
+          // `http://localhost:5000/api/calls/${params.callId}`
         );
         console.log(data);
         setCallObj(data);
@@ -34,9 +34,9 @@ function Call() {
     try {
       setIsLoading(true);
       const { data } = await axios.put(
-        // "https://roadangels.onrender.com/api/updatecall/${params.volunteerId}"
+        `https://roadangels.onrender.com/api/updatecall/${params.callId}`,
 
-        `http://localhost:5000/api/updatecall/${params.callId}`,
+        // `http://localhost:5000/api/updatecall/${params.callId}`,
         detailsObj
       );
 
