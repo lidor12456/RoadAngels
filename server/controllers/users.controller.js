@@ -75,7 +75,7 @@ const updateUserById = async (req, res) => {
   try {
     const updatedData = await Users.findByIdAndUpdate(
       id,
-      { role, takenCalls, name, mail, phone, city, region },
+      { role, name, mail, phone, city, region },
       { new: true }
     );
     res.status(201).send(updatedData);
@@ -87,15 +87,19 @@ const updateUserById = async (req, res) => {
 const updateUserArrayById = async (req, res) => {
   const { id } = req.params;
 
-  const takenCallsArr = req.body;
+  const { takenCalls } = req.body;
 
   try {
-    console.log(req.body.takenCalls);
     const updatedData = await Users.findByIdAndUpdate(
       id,
-      takenCallsArr.push(req.body.takenCalls),
+      { $push: { takenCalls: takenCalls } },
+
       { new: true }
     );
+    const currentCall = await Calls.findByIdAndUpdate(takenCalls, {
+      isDeleted: true,
+    });
+    console.log(currentCall);
     res.status(201).send(updatedData);
   } catch (error) {
     res.status(404).send({ message: error.message });

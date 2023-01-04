@@ -3,6 +3,7 @@ import { Routes, Route, Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./OpenNewCall.css";
+import bg1 from "./imgs/bg1.jpg";
 
 function OpenNewCall() {
   const [detailsObj, setDetailsObj] = useState({});
@@ -33,100 +34,105 @@ function OpenNewCall() {
       {isLoading && <h1 className="">Spinner</h1>}
       {errorMes && <h2>{errorMes}</h2>}
       <h1>Open New Call</h1>
-      <div className="form-group">
-        <p>
-          {" "}
-          Subject -{" "}
-          <input
-            onChange={({ target: { value } }) => {
-              setDetailsObj((prev) => {
-                const updateState = { ...prev };
+      <div className="onc form-group">
+        <div className="onc card mb-10">
+          <p>
+            {" "}
+            Subject -{" "}
+            <input
+              onChange={({ target: { value } }) => {
+                setDetailsObj((prev) => {
+                  const updateState = { ...prev };
 
-                updateState.subject = value;
-                updateState.isDeleted = false;
-                const event = new Date();
-                const jsonDate = event.toUTCString();
-                updateState.openingTime = jsonDate.toString();
+                  updateState.subject = value;
+                  updateState.isDeleted = false;
+                  const event = new Date();
+                  const jsonDate = event.toUTCString();
+                  updateState.openingTime = jsonDate.toString();
 
-                return updateState;
-              });
-            }}
-          ></input>
-        </p>
+                  return updateState;
+                });
+              }}
+            ></input>
+          </p>
 
-        <p>
-          {" "}
-          Name -{" "}
-          <input
-            onChange={({ target: { value } }) => {
-              setDetailsObj((prev) => {
-                const updateState = { ...prev };
+          <p>
+            {" "}
+            Name -{" "}
+            <input
+              onChange={({ target: { value } }) => {
+                setDetailsObj((prev) => {
+                  const updateState = { ...prev };
 
-                updateState.name = value;
-                return updateState;
-              });
-            }}
-          ></input>
-        </p>
-        <p>
-          {" "}
-          Mail -{" "}
-          <input
-            onChange={({ target: { value } }) => {
-              setDetailsObj((prev) => {
-                const updateState = { ...prev };
+                  updateState.name = value;
+                  return updateState;
+                });
+              }}
+            ></input>
+          </p>
+          <p>
+            {" "}
+            Mail -{" "}
+            <input
+              onChange={({ target: { value } }) => {
+                setDetailsObj((prev) => {
+                  const updateState = { ...prev };
 
-                updateState.mail = value;
-                return updateState;
-              });
-            }}
-          ></input>
-        </p>
-        <p>
-          {" "}
-          Phone -{" "}
-          <input
-            onChange={({ target: { value } }) => {
-              setDetailsObj((prev) => {
-                const updateState = { ...prev };
+                  updateState.mail = value;
+                  return updateState;
+                });
+              }}
+            ></input>
+          </p>
+        </div>
+        <div className="onc card mb-10">
+          <p>
+            {" "}
+            Phone -{" "}
+            <input
+              onChange={({ target: { value } }) => {
+                setDetailsObj((prev) => {
+                  const updateState = { ...prev };
 
-                updateState.phone = value;
-                return updateState;
-              });
-            }}
-          ></input>
-        </p>
-        <p>
-          {" "}
-          City -{" "}
-          <input
-            onChange={({ target: { value } }) => {
-              setDetailsObj((prev) => {
-                const updateState = { ...prev };
+                  updateState.phone = value;
+                  return updateState;
+                });
+              }}
+            ></input>
+          </p>
 
-                updateState.city = value;
-                return updateState;
-              });
-            }}
-          ></input>
-        </p>
-        <p>
-          {" "}
-          Region -{" "}
-          <input
-            onChange={({ target: { value } }) => {
-              setDetailsObj((prev) => {
-                const updateState = { ...prev };
+          <p>
+            {" "}
+            City -{" "}
+            <input
+              onChange={({ target: { value } }) => {
+                setDetailsObj((prev) => {
+                  const updateState = { ...prev };
 
-                updateState.region = value;
-                return updateState;
-              });
-            }}
-          ></input>
-        </p>
+                  updateState.city = value;
+                  return updateState;
+                });
+              }}
+            ></input>
+          </p>
+          <p>
+            {" "}
+            Region -{" "}
+            <input
+              onChange={({ target: { value } }) => {
+                setDetailsObj((prev) => {
+                  const updateState = { ...prev };
+
+                  updateState.region = value;
+                  return updateState;
+                });
+              }}
+            ></input>
+          </p>
+        </div>
       </div>
       <button
-        className="btn btn-primary btn-block mb-4"
+        className="onc btn btn-primary btn-block mb-4"
         onClick={() => {
           console.log(detailsObj);
           handlerSubmitForm();

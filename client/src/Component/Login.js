@@ -123,6 +123,15 @@ const Login = () => {
           )}
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
+        <p>You have no account?</p>
+        <button
+          className=" btn btn-primary btn-block mb-4"
+          onClick={() => {
+            navigate("/register");
+          }}
+        >
+          Register
+        </button>
       </div>
     </div>
   );

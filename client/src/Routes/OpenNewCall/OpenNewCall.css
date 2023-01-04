@@ -1,11 +1,36 @@
+.open-call-form {
+    height: 100vh;
+    background: #ffffff url("./imgs/bg1.jpg")  no-repeat right top ;
+    background-size: cover;
+}
+.open-call-form h1 {
+    padding-top:4%;
+    padding-bottom: 2%;
+}
 .form-group {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
+.onc.card{
+    background-color: rgba(255, 255, 255, 0.448);
+}
 .form-group input {
     margin: 1%;
     text-align: center;
 
+}
+.onc.form-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-bottom: 2%;
+}
+.onc.form-group p {
+    border: none;
+}
+.onc.btn{
+    width: 40%;
 }

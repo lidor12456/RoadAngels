@@ -14,7 +14,7 @@ const UsersSchema = new mongoose.Schema({
   phone: { type: Number },
   city: { type: String },
   region: { type: String },
-  takenCallsArr: { type: Array },
+  takenCalls: { type: Array },
   isDeleted: { type: Boolean },
 });
 

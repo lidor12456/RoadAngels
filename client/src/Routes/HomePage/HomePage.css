@@ -8,6 +8,34 @@
     min-height:100vh;
     border: 1px solid black;
 }
+.right-side {
+    display: flex;
+    flex-direction: column;
+    width: 45vw;
+}
+.left-side {
+    width: 55vw;
+    color: whitesmoke;
+    margin: 0 5%;
+
+}
+.left-side p {
+    background-color: #42414185;
+    padding: 10%;
+}
+.left-side h1 {
+ color: #040000da;
+    
+}
+ .btn-success.onc {
+    background-color: yellow ;
+    border: 1px solid rgb(13, 13, 0);
+    color:rgb(33 37 41) ;
+}
+ .btn-primary.lr {
+    background-color: rgb(33 37 41) ;
+    border: 1px solid whitesmoke;
+}
 @media (max-width: 768px) {
     .main-page {
         height: 100%;

@@ -74,7 +74,7 @@ function Volunteers() {
   }, []);
 
   return (
-    <div className="users">
+    <div className="card-group main-container">
       {content == "Volunteer Content." || content == "Admin Content." ? (
         <div>
           <h1>Volunteers</h1>
@@ -82,24 +82,26 @@ function Volunteers() {
           {errorMes && <h2>{errorMes}</h2>}
           {isLoading && <h1 className="">Spinner</h1>}
           {setVolunteersArr.length && (
-            <div className="users-container">
+            <div className="card-group">
               {volunteersArr.map(
                 (
                   { _id, name, role, takenCalls, email, phone, city, region },
                   mapIndex
                 ) => (
-                  <div className="user" key={_id}>
+                  <div className="card-group mb-10" key={_id}>
                     {console.log(volunteersArr)}
-                    <div className="user-info card-body">
+                    <div className="card mb-10">
                       <p className="card-subtitle"> role - {role}</p>
                       <p> takenCalls - {takenCalls.length}</p>
                       <p> Name - {name}</p>
-                      <p className="card-text"> mail - {email}</p>
+                      <p> mail - {email}</p>
                       <p> phone - {`0${phone}`}</p>
                       <p> city - {city}</p>
                       <p> region - {region}</p>
                       <Link to={`/volunteers/${_id}`}>
-                        <button className="edit-btn">edit</button>
+                        <button className="btn btn-primary btn-block mb-4 edit-btn">
+                          edit
+                        </button>
                       </Link>
                     </div>
                   </div>
@@ -107,13 +109,6 @@ function Volunteers() {
               )}
             </div>
           )}
-          <button
-            onClick={() => {
-              navigate("/volunteer/addvolunteer");
-            }}
-          >
-            Add Volunteer
-          </button>
         </div>
       ) : (
         "no access"

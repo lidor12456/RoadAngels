@@ -1,14 +1,12 @@
-/* .user {
-    display: inline-flex;
-    flex-direction: column;
-    align-content: center;
+.main-container{
+    display: flex;
+    align-items: center;
     justify-content: center;
-    flex-wrap:wrap;
-   
-    
+    text-align: left;
 }
-.user-info {
-
-    border: 1px solid black;
-
-} */
+ .mb-10 p {
+    border-bottom: 1px solid black;
+}
+ .edit-btn  {
+    width: 100%;
+}

@@ -95,29 +95,32 @@ function OpenCallsVal() {
         `http://localhost:5000/api/updateuserarray/${userId}`,
         { takenCalls: callId }
       );
-
+      console.log(callsArr);
+      setCallsArr((prev) => {
+        return prev.filter(({ _id }) => _id !== callId);
+      });
       setIsLoading(false);
     } catch (e) {
       setErrorMes(e.message);
     }
   };
-  const handlerTake = async (id) => {
-    try {
-      addCallToArr(id);
-      // console.log(currentUser);
-      setIsLoading(true);
-      const { data } = await axios.put(
-        // "https://roadangels.onrender.com/api/updatecall/${id}"
+  //   const handlerTake = async (id) => {
+  //     try {
+  //       addCallToArr(id);
+  //       // console.log(currentUser);
+  //       setIsLoading(true);
+  //       const { data } = await axios.put(
+  //         // "https://roadangels.onrender.com/api/updatecall/${id}"
 
-        `http://localhost:5000/api/updatecall/${id}`,
-        { isDeleted: true }
-      );
+  //         `http://localhost:5000/api/updatecall/${id}`,
+  //         { isDeleted: true }
+  //       );
 
-      setIsLoading(false);
-    } catch (e) {
-      setErrorMes(e.message);
-    }
-  };
+  //       setIsLoading(false);
+  //     } catch (e) {
+  //       setErrorMes(e.message);
+  //     }
+  //   };
 
   return (
     <div className="card-group main-container">
@@ -175,8 +178,7 @@ function OpenCallsVal() {
                           {
                             isLoading && <h1 className="">Spinner</h1>;
                           }
-                          handlerTake(_id);
-                          window.location.reload(false);
+                          addCallToArr(_id);
                         }}
                       >
                         Take
