@@ -74,7 +74,7 @@ function Volunteers() {
   }, []);
 
   return (
-    <div className="card-group main-container">
+    <div className="vs card-group main-container">
       {content == "Volunteer Content." || content == "Admin Content." ? (
         <div>
           <h1>Volunteers</h1>
@@ -82,25 +82,24 @@ function Volunteers() {
           {errorMes && <h2>{errorMes}</h2>}
           {isLoading && <h1 className="">Spinner</h1>}
           {setVolunteersArr.length && (
-            <div className="card-group">
+            <div className="vs card-group">
               {volunteersArr.map(
                 (
                   { _id, name, role, takenCalls, email, phone, city, region },
                   mapIndex
                 ) => (
-                  <div className="card-group mb-10" key={_id}>
+                  <div className="vs card-group mb-10" key={_id}>
                     {console.log(volunteersArr)}
                     <div className="vs card mb-10">
-                      <p className="card-subtitle"> role - {role}</p>
-                      <p> takenCalls - {takenCalls.length}</p>
+                      <p> Taken Calls - {takenCalls.length}</p>
                       <p> Name - {name}</p>
-                      <p> mail - {email}</p>
-                      <p> phone - {`0${phone}`}</p>
-                      <p> city - {city}</p>
-                      <p> region - {region}</p>
+                      <p> Mail - {email}</p>
+                      <p> Phone - {`0${phone}`}</p>
+                      <p> City - {city}</p>
+                      <p> Region - {region}</p>
                       <Link to={`/volunteers/${_id}`}>
-                        <button className="btn btn-primary btn-block mb-4 edit-btn">
-                          edit
+                        <button className="vs btn btn-primary btn-block mb-4 edit-btn">
+                          Edit
                         </button>
                       </Link>
                     </div>

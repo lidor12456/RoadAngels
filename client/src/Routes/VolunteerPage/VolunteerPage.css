@@ -1,0 +1,31 @@
+.vp.main-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+}
+    .vp.card-group{
+    
+        height: 100vh;
+        background: #ffffff url("./imgs/bg1.webp")  no-repeat right top ;
+        background-size: cover;
+}
+.vp h1 {
+    color: rgb(5, 0, 0);
+    background-color: rgba(240, 248, 255, 0.076);
+}
+.vp.main-container {
+    margin:0;
+}
+.vp.card {
+    background-color: rgba(255, 255, 255, 0.448);
+    color: rgb(18, 0, 0);
+    border: 5px double rgba(1, 53, 15, 0.329);
+    
+}
+.text-muted p {
+    color: rgb(115, 7, 7);
+}
+.vp.btn {
+    width: 100%;
+}

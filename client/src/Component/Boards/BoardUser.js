@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 
-import UserService from "../services/user.service";
-import EventBus from "../common/EventBus";
-import VolunteerNav from "./VolunteerNav/VolunteerNav";
+import UserService from "../../services/user.service";
+import EventBus from "../../common/EventBus";
+import { useNavigate } from "react-router-dom";
+import "./Boards.css";
 
-const BoardModerator = () => {
+const BoardUser = () => {
   const [content, setContent] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
-    UserService.getModeratorBoard().then(
+    UserService.getUserBoard().then(
       (response) => {
         setContent(response.data);
       },
@@ -31,13 +33,20 @@ const BoardModerator = () => {
 
   return (
     <div className="container">
-      {content === "Volunteer Content." ? <VolunteerNav /> : ""}
-
-      <header className="jumbotron">
-        <h3>{content}</h3>
-      </header>
+      <div className="content ba">
+        <div>
+          <button
+            className="ba btn btn-success btn-block mb-4 m-5 p-3"
+            onClick={() => {
+              navigate("/opennewcall");
+            }}
+          >
+            Open New Call
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default BoardModerator;
+export default BoardUser;

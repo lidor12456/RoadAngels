@@ -3,8 +3,9 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
+import "./Register.css";
 
-import AuthService from "../services/auth.service";
+import AuthService from "../../services/auth.service";
 
 const required = (value) => {
   if (!value) {
@@ -129,8 +130,8 @@ const Register = () => {
   };
 
   return (
-    <div className="col-md-12">
-      <div className="card card-container">
+    <div className="rr-main col-md-12">
+      <div className="">
         {/* <img
           src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
           alt="profile-img"
@@ -139,8 +140,9 @@ const Register = () => {
 
         <Form onSubmit={handleRegister} ref={form}>
           {!successful && (
-            <div>
-              <div className="form-group">
+            <div className="form">
+              <div className="rr form-group">
+                {/* <div className="rr card mb-10"> */}
                 <label htmlFor="username">Username</label>
                 <Input
                   type="text"
@@ -150,75 +152,77 @@ const Register = () => {
                   onChange={onChangeUsername}
                   validations={[required, vusername]}
                 />
-              </div>
 
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  name="email"
-                  value={email}
-                  onChange={onChangeEmail}
-                  validations={[required, validEmail]}
-                />
-              </div>
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="email"
+                    value={email}
+                    onChange={onChangeEmail}
+                    validations={[required, validEmail]}
+                  />
+                </div>
 
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <Input
-                  type="password"
-                  className="form-control"
-                  name="password"
-                  value={password}
-                  onChange={onChangePassword}
-                  validations={[required, vpassword]}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="Name">Name</label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  name="name"
-                  value={name}
-                  onChange={onChangeName}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="Phone">Phone</label>
-                <Input
-                  type="tel"
-                  className="form-control"
-                  name="phone"
-                  value={phone}
-                  onChange={onChangePhone}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="City">City</label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  name="city"
-                  value={city}
-                  onChange={onChangeCity}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="Region">Region</label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  name="region"
-                  value={region}
-                  onChange={onChangeRegion}
-                />
-              </div>
+                <div className="form-group">
+                  <label htmlFor="password">Password</label>
+                  <Input
+                    type="password"
+                    className="form-control"
+                    name="password"
+                    value={password}
+                    onChange={onChangePassword}
+                    validations={[required, vpassword]}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="Name">Name</label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="name"
+                    value={name}
+                    onChange={onChangeName}
+                  />
+                </div>
+                {/* </div> */}
+                {/* <div className="rr card mb-10"> */}
+                <div className="form-group">
+                  <label htmlFor="Phone">Phone</label>
+                  <Input
+                    type="tel"
+                    className="form-control"
+                    name="phone"
+                    value={phone}
+                    onChange={onChangePhone}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="City">City</label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="city"
+                    value={city}
+                    onChange={onChangeCity}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="Region">Region</label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="region"
+                    value={region}
+                    onChange={onChangeRegion}
+                  />
+                </div>
 
-              <div className="form-group">
-                <button className="btn btn-primary btn-block">Sign Up</button>
+                {/* <div className="form-group"></div> */}
+                {/* </div> */}
               </div>
+              <button className="btn btn-primary btn-block">Sign Up</button>
             </div>
           )}
 

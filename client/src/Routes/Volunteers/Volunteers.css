@@ -10,3 +10,32 @@
  .edit-btn  {
     width: 100%;
 }
+
+
+    .vs.main-container{
+    
+        height: 100vh;
+        background: #ffffff url("./imgs/bg1.jpg")  no-repeat right top ;
+        background-size: cover;
+}
+.vs h1 {
+    color: rgb(16, 16, 16);
+    background-color: rgba(240, 248, 255, 0.129);
+}
+.vs.main-container {
+    margin:0;
+}
+.vs.card {
+    background-color: rgba(255, 255, 255, 0.448);
+    color: rgb(18, 0, 0);
+    border: 5px double rgba(1, 53, 15, 0.329);
+    /* height: 100%; */
+    padding: 2%;
+    
+}
+.text-muted p {
+    color: rgb(115, 7, 7);
+}
+.vs.btn {
+    width: 100%;
+}

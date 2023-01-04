@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { Routes, Route, Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./VolunteerPage.css";
 
 function VolunteerPage() {
   const [volunteerArr, setVolunteerArr] = useState([]);
@@ -45,122 +46,129 @@ function VolunteerPage() {
     }
   };
   return (
-    <div className="users">
-      {isLoading && <h1 className="">Spinner</h1>}
-      {errorMes && <h2>{errorMes}</h2>}
-      <h1>{volunteerArr[0] && volunteerArr[0].name}</h1>
+    <div>
+      <div className="vp card-group main-container">
+        {/* <h1>{volunteerArr[0] && volunteerArr[0].name}</h1> */}
+        {isLoading && <h1 className="spinner">Spinner</h1>}
+        {errorMes && <h2>{errorMes}</h2>}
 
-      {setVolunteerArr.length && (
-        <div className="users-container">
-          {volunteerArr.map(
-            (
-              { _id, name, role, takenCalls, email, phone, city, region },
-              mapIndex
-            ) => (
-              <div className="user" key={_id}>
-                {console.log(volunteerArr)}
-                <div className="user-info">
-                  <p>
-                    {" "}
-                    role -{" "}
-                    <input
-                      placeholder={role}
-                      onChange={({ target: { value } }) => {
-                        setDetailsObj((prev) => {
-                          const updateState = { ...prev };
+        {setVolunteerArr.length && (
+          <div className="card-group">
+            {volunteerArr.map(
+              (
+                { _id, name, role, takenCalls, email, phone, city, region },
+                mapIndex
+              ) => (
+                <div className="card-group mb-10" key={_id}>
+                  {console.log(volunteerArr)}
+                  <div className="vp card mb-10">
+                    {/* <p>
+                      {" "}
+                      Role -{" "}
+                      <input
+                        placeholder={role}
+                        onChange={({ target: { value } }) => {
+                          setDetailsObj((prev) => {
+                            const updateState = { ...prev };
 
-                          updateState.role = value;
-                          return updateState;
-                        });
-                      }}
-                    ></input>
-                  </p>
+                            updateState.role = value;
+                            return updateState;
+                          });
+                        }}
+                      ></input>
+                    </p> */}
 
-                  <p>
-                    {" "}
-                    Name -{" "}
-                    <input
-                      placeholder={name}
-                      onChange={({ target: { value } }) => {
-                        setDetailsObj((prev) => {
-                          const updateState = { ...prev };
+                    <p>
+                      {" "}
+                      Name -{" "}
+                      <input
+                        placeholder={name}
+                        onChange={({ target: { value } }) => {
+                          setDetailsObj((prev) => {
+                            const updateState = { ...prev };
 
-                          updateState.name = value;
-                          return updateState;
-                        });
-                      }}
-                    ></input>
-                  </p>
-                  <p>
-                    {" "}
-                    mail -{" "}
-                    <input
-                      placeholder={email}
-                      onChange={({ target: { value } }) => {
-                        setDetailsObj((prev) => {
-                          const updateState = { ...prev };
+                            updateState.name = value;
+                            return updateState;
+                          });
+                        }}
+                      ></input>
+                    </p>
+                    <p>
+                      {" "}
+                      Mail -{" "}
+                      <input
+                        placeholder={email}
+                        onChange={({ target: { value } }) => {
+                          setDetailsObj((prev) => {
+                            const updateState = { ...prev };
 
-                          updateState.mail = value;
-                          return updateState;
-                        });
-                      }}
-                    ></input>
-                  </p>
-                  <p>
-                    {" "}
-                    phone -{" "}
-                    <input
-                      placeholder={phone}
-                      onChange={({ target: { value } }) => {
-                        setDetailsObj((prev) => {
-                          const updateState = { ...prev };
+                            updateState.mail = value;
+                            return updateState;
+                          });
+                        }}
+                      ></input>
+                    </p>
+                    <p>
+                      {" "}
+                      Phone -{" "}
+                      <input
+                        placeholder={phone}
+                        onChange={({ target: { value } }) => {
+                          setDetailsObj((prev) => {
+                            const updateState = { ...prev };
 
-                          updateState.phone = value;
-                          return updateState;
-                        });
-                      }}
-                    ></input>
-                  </p>
-                  <p>
-                    {" "}
-                    city -{" "}
-                    <input
-                      placeholder={city}
-                      onChange={({ target: { value } }) => {
-                        setDetailsObj((prev) => {
-                          const updateState = { ...prev };
+                            updateState.phone = value;
+                            return updateState;
+                          });
+                        }}
+                      ></input>
+                    </p>
+                    <p>
+                      {" "}
+                      City -{" "}
+                      <input
+                        placeholder={city}
+                        onChange={({ target: { value } }) => {
+                          setDetailsObj((prev) => {
+                            const updateState = { ...prev };
 
-                          updateState.city = value;
-                          return updateState;
-                        });
-                      }}
-                    ></input>
-                  </p>
-                  <p>
-                    {" "}
-                    region -{" "}
-                    <input
-                      placeholder={region}
-                      onChange={({ target: { value } }) => {
-                        setDetailsObj((prev) => {
-                          const updateState = { ...prev };
+                            updateState.city = value;
+                            return updateState;
+                          });
+                        }}
+                      ></input>
+                    </p>
+                    <p>
+                      {" "}
+                      Region -{" "}
+                      <input
+                        placeholder={region}
+                        onChange={({ target: { value } }) => {
+                          setDetailsObj((prev) => {
+                            const updateState = { ...prev };
 
-                          updateState.region = value;
-                          return updateState;
-                        });
-                      }}
-                    ></input>
-                  </p>
-                  <p>takenCalls -{takenCalls.length}</p>
+                            updateState.region = value;
+                            return updateState;
+                          });
+                        }}
+                      ></input>
+                    </p>
+                    <p>Taken Calls -{takenCalls.length}</p>
+                  </div>
+                  <button
+                    className="vp btn btn-primary btn-block mb-4"
+                    onClick={handlerSubmit}
+                  >
+                    Submit
+                  </button>
                 </div>
-                <button onClick={handlerSubmit}>submit</button>
-              </div>
-            )
-          )}
+              )
+            )}
 
-          <br></br>
-        </div>
-      )}
+            <br></br>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

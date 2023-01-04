@@ -12,13 +12,13 @@ import VolunteerPage from "./Routes/VolunteerPage/VolunteerPage";
 import AddVolunteer from "./Routes/AddVolunteer/AddVolunteer";
 import Call from "./Routes/Call/Call";
 
-import Login from "./Component/Login";
-import Register from "./Component/Register";
+import Login from "./Component/Login/Login";
+import Register from "./Component/Register/Register";
 
 import Profile from "./Component/Profile";
-import BoardUser from "./Component/BoardUser";
-import BoardModerator from "./Component/BoardModerator";
-import BoardAdmin from "./Component/BoardAdmin";
+import BoardUser from "./Component/Boards/BoardUser";
+import BoardModerator from "./Component/Boards/BoardModerator";
+import BoardAdmin from "./Component/Boards/BoardAdmin";
 
 function IndexRoutes() {
   return (

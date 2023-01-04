@@ -31,6 +31,6 @@
 .onc.form-group p {
     border: none;
 }
-.onc.btn{
-    width: 40%;
+.onc .btn {
+    width: 100%;
 }

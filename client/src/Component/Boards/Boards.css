@@ -1,0 +1,12 @@
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    background: #ffffff url("./imgs/bg1.jpg")  no-repeat right top ;
+    background-size: cover;
+}
+.ba button {
+background-color: black;
+}
