@@ -92,7 +92,7 @@ function OpenCalls() {
   };
 
   return (
-    <div className="card-group main-container">
+    <div className="oc card-group main-container">
       {console.log(content)}
       {content == "Volunteer Content." || content == "Admin Content." ? (
         <div>
@@ -120,7 +120,7 @@ function OpenCalls() {
                 ) => (
                   <div className="card-group mb-10">
                     {console.log(callsArr)}
-                    <div className="card mb-10" key={_id}>
+                    <div className="oc card mb-10" key={_id}>
                       <p> subject - {subject}</p>
                       <p> test - {test}</p>
                       <p> Name - {name}</p>
@@ -130,15 +130,15 @@ function OpenCalls() {
                       <p> region - {region}</p>
                       <p> region - {isDeleted}</p>
                       <small class="text-muted mb-3">
-                        openingTime - {openingTime}
+                        <p>Opening Time - {openingTime}</p>
                       </small>
                       <Link to={`/opencalls/${_id}`}>
-                        <button className="btn btn-primary btn-block mb-4">
+                        <button className="oc btn btn-primary btn-block mb-4">
                           Edit
                         </button>
                       </Link>
                       <button
-                        className="btn btn-danger btn-block mb-4"
+                        className=" btn btn-danger btn-block mb-4"
                         onClick={() => {
                           {
                             errorMes && <h2>{errorMes}</h2>;

@@ -90,7 +90,7 @@ function Volunteers() {
                 ) => (
                   <div className="card-group mb-10" key={_id}>
                     {console.log(volunteersArr)}
-                    <div className="card mb-10">
+                    <div className="vs card mb-10">
                       <p className="card-subtitle"> role - {role}</p>
                       <p> takenCalls - {takenCalls.length}</p>
                       <p> Name - {name}</p>

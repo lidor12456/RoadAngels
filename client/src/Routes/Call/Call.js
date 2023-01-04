@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { Routes, Route, Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./Call.css";
 
 function Call() {
   const [callObj, setCallObj] = useState([]);
@@ -46,105 +47,116 @@ function Call() {
     }
   };
   return (
-    <div className="call-form">
-      {isLoading && <h1 className="">Spinner</h1>}
-      {errorMes && <h2>{errorMes}</h2>}
-      {callObj && (
-        <div className="call-info">
-          <p>
-            {" "}
-            openingTime -{" "}
-            <input
-              placeholder={callObj.openingTime}
-              onChange={({ target: { value } }) => {
-                setDetailsObj((prev) => {
-                  const updateState = { ...prev };
+    <div className="ec main">
+      <h1>Edit Call</h1>
+      <div className="ec card-group mb-10">
+        {isLoading && <h1 className="">Spinner</h1>}
+        {errorMes && <h2>{errorMes}</h2>}
+        {callObj && (
+          <div className="ec mb-10">
+            <div className="ec card mb-10 p-3">
+              <p>
+                {" "}
+                OpeningTime -{" "}
+                <input
+                  placeholder={callObj.openingTime}
+                  onChange={({ target: { value } }) => {
+                    setDetailsObj((prev) => {
+                      const updateState = { ...prev };
 
-                  updateState.role = value;
-                  return updateState;
-                });
-              }}
-            ></input>
-          </p>
+                      updateState.role = value;
+                      return updateState;
+                    });
+                  }}
+                ></input>
+              </p>
 
-          <p>
-            {" "}
-            Name -{" "}
-            <input
-              placeholder={callObj.name}
-              onChange={({ target: { value } }) => {
-                setDetailsObj((prev) => {
-                  const updateState = { ...prev };
+              <p>
+                {" "}
+                Name -{" "}
+                <input
+                  placeholder={callObj.name}
+                  onChange={({ target: { value } }) => {
+                    setDetailsObj((prev) => {
+                      const updateState = { ...prev };
 
-                  updateState.name = value;
-                  return updateState;
-                });
-              }}
-            ></input>
-          </p>
-          <p>
-            {" "}
-            mail -{" "}
-            <input
-              placeholder={callObj.mail}
-              onChange={({ target: { value } }) => {
-                setDetailsObj((prev) => {
-                  const updateState = { ...prev };
+                      updateState.name = value;
+                      return updateState;
+                    });
+                  }}
+                ></input>
+              </p>
+              <p>
+                {" "}
+                Mail -{" "}
+                <input
+                  placeholder={callObj.mail}
+                  onChange={({ target: { value } }) => {
+                    setDetailsObj((prev) => {
+                      const updateState = { ...prev };
 
-                  updateState.mail = value;
-                  return updateState;
-                });
-              }}
-            ></input>
-          </p>
-          <p>
-            {" "}
-            phone -{" "}
-            <input
-              placeholder={callObj.phone}
-              onChange={({ target: { value } }) => {
-                setDetailsObj((prev) => {
-                  const updateState = { ...prev };
+                      updateState.mail = value;
+                      return updateState;
+                    });
+                  }}
+                ></input>
+              </p>
+              <p>
+                {" "}
+                Phone -{" "}
+                <input
+                  placeholder={callObj.phone}
+                  onChange={({ target: { value } }) => {
+                    setDetailsObj((prev) => {
+                      const updateState = { ...prev };
 
-                  updateState.phone = value;
-                  return updateState;
-                });
-              }}
-            ></input>
-          </p>
-          <p>
-            {" "}
-            city -{" "}
-            <input
-              placeholder={callObj.city}
-              onChange={({ target: { value } }) => {
-                setDetailsObj((prev) => {
-                  const updateState = { ...prev };
+                      updateState.phone = value;
+                      return updateState;
+                    });
+                  }}
+                ></input>
+              </p>
+              <p>
+                {" "}
+                City -{" "}
+                <input
+                  placeholder={callObj.city}
+                  onChange={({ target: { value } }) => {
+                    setDetailsObj((prev) => {
+                      const updateState = { ...prev };
 
-                  updateState.city = value;
-                  return updateState;
-                });
-              }}
-            ></input>
-          </p>
-          <p>
-            {" "}
-            region -{" "}
-            <input
-              placeholder={callObj.region}
-              onChange={({ target: { value } }) => {
-                setDetailsObj((prev) => {
-                  const updateState = { ...prev };
+                      updateState.city = value;
+                      return updateState;
+                    });
+                  }}
+                ></input>
+              </p>
+              <p>
+                {" "}
+                Region -{" "}
+                <input
+                  placeholder={callObj.region}
+                  onChange={({ target: { value } }) => {
+                    setDetailsObj((prev) => {
+                      const updateState = { ...prev };
 
-                  updateState.region = value;
-                  return updateState;
-                });
-              }}
-            ></input>
-          </p>
-          <button onClick={handlerSubmit}>submit</button>
-        </div>
-      )}
+                      updateState.region = value;
+                      return updateState;
+                    });
+                  }}
+                ></input>
+              </p>
+
+              <button
+                className="ec btn btn-primary btn-block mb-4"
+                onClick={handlerSubmit}
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -3,8 +3,7 @@ import { Routes, Route, Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./OpenNewCall.css";
-import bg1 from "./imgs/bg1.jpg";
-
+//
 function OpenNewCall() {
   const [detailsObj, setDetailsObj] = useState({});
   const [isLoading, setIsLoading] = useState(false);

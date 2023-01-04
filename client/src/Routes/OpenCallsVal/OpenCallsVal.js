@@ -8,7 +8,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import axios from "axios";
-// import "./OpenCalls.css";
+import "./OpenCallsVal.css";
 import UserService from "../../services/user.service";
 import AuthService from "../../services/auth.service";
 
@@ -123,11 +123,14 @@ function OpenCallsVal() {
   //   };
 
   return (
-    <div className="card-group main-container">
+    <div className="ocv card-group main-container">
       {console.log(content)}
       {content == "Volunteer Content." || content == "Admin Content." ? (
         <div>
-          <h1>Open Calls - Volunteer area</h1>
+          <h1>
+            Open Calls &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;- &nbsp; &nbsp;
+            Volunteer Area
+          </h1>
           {errorMes && <h2>{errorMes}</h2>}
 
           {isLoading && <h1 className="">Spinner</h1>}
@@ -151,22 +154,21 @@ function OpenCallsVal() {
                 ) => (
                   <div className="card-group mb-10">
                     {/* {console.log(callsArr)} */}
-                    <div className="card mb-10" key={_id}>
-                      <p> subject - {subject}</p>
-                      <p> test - {test}</p>
+                    <div className="ocv card mb-10" key={_id}>
+                      <p> Subject - {subject}</p>
+                      <p> Test - {test}</p>
                       <p> Name - {name}</p>
-                      <p> mail - {mail}</p>
-                      <p> phone - {phone}</p>
-                      <p> city - {city}</p>
-                      <p> region - {region}</p>
-                      <p> region - {isDeleted}</p>
+                      <p> Mail - {mail}</p>
+                      <p> Phone - {phone}</p>
+                      <p> City - {city}</p>
+                      <p> Region - {region}</p>
                       <small className="text-muted mb-3">
-                        openingTime - {openingTime}
+                        <p>Opening Time - {openingTime}</p>
                       </small>
                       <Link to={`/opencalls/${_id}`}>
-                        <button className="btn btn-primary btn-block mb-4">
+                        {/* <button className="btn btn-primary btn-block mb-4">
                           Edit
-                        </button>
+                        </button> */}
                       </Link>
                       <button
                         className="btn btn-success btn-block mb-4"
