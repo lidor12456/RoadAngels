@@ -8,7 +8,7 @@ function VolunteerNav() {
       <nav className="navbar navbar-expand navbar-dark bg-primary ">
         <div className="navbar-nav ml-auto ">
           <li className="nav-item dark">
-            <Link to="/opencalls" className="nav-link">
+            <Link to="/opencallsval" className="nav-link">
               Open Calls
             </Link>
           </li>

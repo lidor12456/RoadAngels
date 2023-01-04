@@ -8,11 +8,15 @@ import {
   useNavigate,
 } from "react-router-dom";
 import axios from "axios";
-import "./OpenCalls.css";
+// import "./OpenCalls.css";
 import UserService from "../../services/user.service";
+import AuthService from "../../services/auth.service";
+
 import EventBus from "../../common/EventBus";
 
-function OpenCalls() {
+function OpenCallsVal() {
+  const [currentUser, setCurrentUser] = useState(undefined);
+
   const [content, setContent] = useState("");
   const [callsArr, setCallsArr] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -22,6 +26,10 @@ function OpenCalls() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const user = AuthService.getCurrentUser();
+        if (user) {
+          setCurrentUser(user);
+        }
         setIsLoading(true);
         const { data } = await axios.get(
           `http://localhost:5000/api/notdeletedcalls`
@@ -36,6 +44,7 @@ function OpenCalls() {
       UserService.getModeratorBoard().then(
         (response) => {
           setContent(response.data);
+          console.log(response);
         },
         (error) => {
           const _content =
@@ -75,8 +84,27 @@ function OpenCalls() {
     fetchData();
   }, []);
 
-  const handlerDelete = async (id) => {
+  //!TODO
+  const addCallToArr = async (callId) => {
+    const userId = currentUser.id;
     try {
+      setIsLoading(true);
+      const { data } = await axios.put(
+        // "https://roadangels.onrender.com/api/updateuserarray/${userId}"
+
+        `http://localhost:5000/api/updateuserarray/${userId}`,
+        { takenCalls: callId }
+      );
+
+      setIsLoading(false);
+    } catch (e) {
+      setErrorMes(e.message);
+    }
+  };
+  const handlerTake = async (id) => {
+    try {
+      addCallToArr(id);
+      // console.log(currentUser);
       setIsLoading(true);
       const { data } = await axios.put(
         // "https://roadangels.onrender.com/api/updatecall/${id}"
@@ -96,7 +124,7 @@ function OpenCalls() {
       {console.log(content)}
       {content == "Volunteer Content." || content == "Admin Content." ? (
         <div>
-          <h1>Open Calls</h1>
+          <h1>Open Calls - Volunteer area</h1>
           {errorMes && <h2>{errorMes}</h2>}
 
           {isLoading && <h1 className="">Spinner</h1>}
@@ -119,7 +147,7 @@ function OpenCalls() {
                   mapIndex
                 ) => (
                   <div className="card-group mb-10">
-                    {console.log(callsArr)}
+                    {/* {console.log(callsArr)} */}
                     <div className="card mb-10" key={_id}>
                       <p> subject - {subject}</p>
                       <p> test - {test}</p>
@@ -129,7 +157,7 @@ function OpenCalls() {
                       <p> city - {city}</p>
                       <p> region - {region}</p>
                       <p> region - {isDeleted}</p>
-                      <small class="text-muted mb-3">
+                      <small className="text-muted mb-3">
                         openingTime - {openingTime}
                       </small>
                       <Link to={`/opencalls/${_id}`}>
@@ -138,7 +166,7 @@ function OpenCalls() {
                         </button>
                       </Link>
                       <button
-                        className="btn btn-danger btn-block mb-4"
+                        className="btn btn-success btn-block mb-4"
                         onClick={() => {
                           {
                             errorMes && <h2>{errorMes}</h2>;
@@ -147,11 +175,11 @@ function OpenCalls() {
                           {
                             isLoading && <h1 className="">Spinner</h1>;
                           }
-                          handlerDelete(_id);
+                          handlerTake(_id);
                           window.location.reload(false);
                         }}
                       >
-                        Delete
+                        Take
                       </button>
                     </div>
                   </div>
@@ -167,4 +195,4 @@ function OpenCalls() {
   );
 }
 
-export default OpenCalls;
+export default OpenCallsVal;

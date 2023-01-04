@@ -4,6 +4,7 @@ import axios from "axios";
 import "./Volunteers.css";
 import UserService from "../../services/user.service";
 import EventBus from "../../common/EventBus";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function Volunteers() {
   const [content, setContent] = useState("");
@@ -89,11 +90,11 @@ function Volunteers() {
                 ) => (
                   <div className="user" key={_id}>
                     {console.log(volunteersArr)}
-                    <div className="user-info">
-                      <p> role - {role}</p>
+                    <div className="user-info card-body">
+                      <p className="card-subtitle"> role - {role}</p>
                       <p> takenCalls - {takenCalls.length}</p>
                       <p> Name - {name}</p>
-                      <p> mail - {email}</p>
+                      <p className="card-text"> mail - {email}</p>
                       <p> phone - {`0${phone}`}</p>
                       <p> city - {city}</p>
                       <p> region - {region}</p>

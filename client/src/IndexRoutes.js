@@ -3,6 +3,7 @@ import { Routes, Route, Link, useParams, Navigate } from "react-router-dom";
 import OpenNewCall from "./Routes/OpenNewCall/OpenNewCall";
 
 import OpenCalls from "./Routes/OpenCalls/OpenCalls";
+import OpenCallsVal from "./Routes/OpenCallsVal/OpenCallsVal";
 import CallsTaken from "./Routes/CallsTaken/CallsTaken";
 import Volunteers from "./Routes/Volunteers/Volunteers";
 import HomePage from "./Routes/HomePage/HomePage";
@@ -27,6 +28,7 @@ function IndexRoutes() {
       <Route path="/login" element={<Login />} />
       <Route path="/opennewcall" element={<OpenNewCall />} />
       <Route path="/opencalls" element={<OpenCalls />} />
+      <Route path="/opencallsval" element={<OpenCallsVal />} />
       <Route path="/opencalls/:callId" element={<Call />} />
       <Route path="/callstaken" element={<CallsTaken />} />
       <Route path="/volunteers" element={<Volunteers />} />

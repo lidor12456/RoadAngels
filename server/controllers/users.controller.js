@@ -69,11 +69,31 @@ const getCallById = async (req, res) => {
 
 const updateUserById = async (req, res) => {
   const { id } = req.params;
+
   const { role, takenCalls, name, mail, phone, city, region } = req.body;
+
   try {
     const updatedData = await Users.findByIdAndUpdate(
       id,
       { role, takenCalls, name, mail, phone, city, region },
+      { new: true }
+    );
+    res.status(201).send(updatedData);
+  } catch (error) {
+    res.status(404).send({ message: error.message });
+  }
+};
+// TODO : finish this route
+const updateUserArrayById = async (req, res) => {
+  const { id } = req.params;
+
+  const takenCallsArr = req.body;
+
+  try {
+    console.log(req.body.takenCalls);
+    const updatedData = await Users.findByIdAndUpdate(
+      id,
+      takenCallsArr.push(req.body.takenCalls),
       { new: true }
     );
     res.status(201).send(updatedData);
@@ -113,6 +133,7 @@ module.exports = {
   addCall,
   getUserById,
   updateUserById,
+  updateUserArrayById,
   deleteUser,
   getCallById,
   updateCallById,

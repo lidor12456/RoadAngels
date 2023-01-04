@@ -8,6 +8,7 @@ const {
   addCall,
   getUserById,
   updateUserById,
+  updateUserArrayById,
   deleteUser,
   getCallById,
   updateCallById,
@@ -27,6 +28,7 @@ indexRoute.get("/calls/:id", cors(), getCallById);
 indexRoute.post("/adduser", cors(), addUser);
 indexRoute.post("/addcall", cors(), addCall);
 indexRoute.put("/updateuser/:id", cors(), updateUserById);
+indexRoute.put("/updateuserarray/:id", cors(), updateUserArrayById);
 indexRoute.put("/updatecall/:id", cors(), updateCallById);
 // indexRoute.put("/depots/:id", cors(), depotsCash);
 // indexRoute.post("/transfercash/:firstId/:secondId", cors(), transferCash);

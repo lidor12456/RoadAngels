@@ -5,9 +5,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import AuthService from "../../services/auth.service";
 
 import EventBus from "../../common/EventBus";
-import GeneralNav from "../GeneralNav/GeneralNav";
-import AdminNav from "../AdminNav/AdminNav";
-import VolunteerNav from "../VolunteerNav/VolunteerNav";
+// import OpenNewCall from "../../Routes/OpenNewCall/OpenNewCall";
+// import GeneralNav from "../GeneralNav/GeneralNav";
+// import AdminNav from "../AdminNav/AdminNav";
+// import VolunteerNav from "../VolunteerNav/VolunteerNav";
 
 const TestLogin = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -57,6 +58,11 @@ const TestLogin = () => {
               Home
             </Link>
           </li>
+          <li className="nav-item">
+            <Link to={"/opennewcall"} className="nav-link">
+              Open New Call
+            </Link>
+          </li>
 
           {showModeratorBoard && (
             <li className="nav-item">
@@ -79,7 +85,7 @@ const TestLogin = () => {
           {currentUser && (
             <li className="nav-item">
               <Link to={"/user"} className="nav-link">
-                User
+                User Board
               </Link>
             </li>
           )}

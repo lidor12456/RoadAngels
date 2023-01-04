@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { Routes, Route, Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./OpenNewCall.css";
 
 function OpenNewCall() {
   const [detailsObj, setDetailsObj] = useState({});
@@ -8,20 +10,6 @@ function OpenNewCall() {
   const [errorMes, setErrorMes] = useState(null);
   const navigate = useNavigate();
 
-  const updateDateAndTime = () => {
-    const event = new Date();
-    const jsonDate = event.toUTCString();
-    setDetailsObj((prev) => {
-      const updateState = { ...prev };
-
-      updateState.openingTime = `${jsonDate}`;
-      // updateState.openingTime = `2012`;
-      console.log(detailsObj);
-      console.log(jsonDate);
-
-      return updateState;
-    });
-  };
   const handlerSubmitForm = async () => {
     try {
       setIsLoading(true);
@@ -33,106 +21,114 @@ function OpenNewCall() {
       );
 
       setIsLoading(false);
-      // // TODO: NAVIGATE TO SOMEWHERE ELSE MORE USEFUL
-      // navigate("/");
+      // TODO: NAVIGATE TO SOMEWHERE ELSE MORE USEFUL
+      navigate("/");
     } catch (e) {
       setErrorMes(e.message);
     }
   };
 
   return (
-    <div className="open-call-form">
+    <div className="open-call-form col-md-12">
       {isLoading && <h1 className="">Spinner</h1>}
       {errorMes && <h2>{errorMes}</h2>}
       <h1>Open New Call</h1>
-      <p>
-        {" "}
-        Subject -{" "}
-        <input
-          onChange={({ target: { value } }) => {
-            setDetailsObj((prev) => {
-              const updateState = { ...prev };
+      <div className="form-group">
+        <p>
+          {" "}
+          Subject -{" "}
+          <input
+            onChange={({ target: { value } }) => {
+              setDetailsObj((prev) => {
+                const updateState = { ...prev };
 
-              updateState.subject = value;
-              return updateState;
-            });
-          }}
-        ></input>
-      </p>
+                updateState.subject = value;
+                updateState.isDeleted = false;
+                const event = new Date();
+                const jsonDate = event.toUTCString();
+                updateState.openingTime = jsonDate.toString();
 
-      <p>
-        {" "}
-        Name -{" "}
-        <input
-          onChange={({ target: { value } }) => {
-            setDetailsObj((prev) => {
-              const updateState = { ...prev };
+                return updateState;
+              });
+            }}
+          ></input>
+        </p>
 
-              updateState.name = value;
-              return updateState;
-            });
-          }}
-        ></input>
-      </p>
-      <p>
-        {" "}
-        Mail -{" "}
-        <input
-          onChange={({ target: { value } }) => {
-            setDetailsObj((prev) => {
-              const updateState = { ...prev };
+        <p>
+          {" "}
+          Name -{" "}
+          <input
+            onChange={({ target: { value } }) => {
+              setDetailsObj((prev) => {
+                const updateState = { ...prev };
 
-              updateState.mail = value;
-              return updateState;
-            });
-          }}
-        ></input>
-      </p>
-      <p>
-        {" "}
-        Phone -{" "}
-        <input
-          onChange={({ target: { value } }) => {
-            setDetailsObj((prev) => {
-              const updateState = { ...prev };
+                updateState.name = value;
+                return updateState;
+              });
+            }}
+          ></input>
+        </p>
+        <p>
+          {" "}
+          Mail -{" "}
+          <input
+            onChange={({ target: { value } }) => {
+              setDetailsObj((prev) => {
+                const updateState = { ...prev };
 
-              updateState.phone = value;
-              return updateState;
-            });
-          }}
-        ></input>
-      </p>
-      <p>
-        {" "}
-        City -{" "}
-        <input
-          onChange={({ target: { value } }) => {
-            setDetailsObj((prev) => {
-              const updateState = { ...prev };
+                updateState.mail = value;
+                return updateState;
+              });
+            }}
+          ></input>
+        </p>
+        <p>
+          {" "}
+          Phone -{" "}
+          <input
+            onChange={({ target: { value } }) => {
+              setDetailsObj((prev) => {
+                const updateState = { ...prev };
 
-              updateState.city = value;
-              return updateState;
-            });
-          }}
-        ></input>
-      </p>
-      <p>
-        {" "}
-        Region -{" "}
-        <input
-          onChange={({ target: { value } }) => {
-            setDetailsObj((prev) => {
-              const updateState = { ...prev };
+                updateState.phone = value;
+                return updateState;
+              });
+            }}
+          ></input>
+        </p>
+        <p>
+          {" "}
+          City -{" "}
+          <input
+            onChange={({ target: { value } }) => {
+              setDetailsObj((prev) => {
+                const updateState = { ...prev };
 
-              updateState.region = value;
-              return updateState;
-            });
-          }}
-        ></input>
-      </p>
+                updateState.city = value;
+                return updateState;
+              });
+            }}
+          ></input>
+        </p>
+        <p>
+          {" "}
+          Region -{" "}
+          <input
+            onChange={({ target: { value } }) => {
+              setDetailsObj((prev) => {
+                const updateState = { ...prev };
+
+                updateState.region = value;
+                return updateState;
+              });
+            }}
+          ></input>
+        </p>
+      </div>
       <button
+        className="btn btn-primary btn-block mb-4"
         onClick={() => {
-          updateDateAndTime();
+          console.log(detailsObj);
           handlerSubmitForm();
         }}
       >
