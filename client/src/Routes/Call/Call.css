@@ -2,6 +2,7 @@
     background: #ffffff url("./imgs/bg1.jpg")  no-repeat right top ;
     background-size: cover;
     height: 100vh;
+    margin-top: -2%;
 }
 .ec.main h1 {
     padding: 2%;

@@ -94,12 +94,14 @@ function OpenCalls() {
   return (
     <div className="oc card-group main-container">
       {console.log(content)}
+      {isLoading && <h1 className="spinner">Spinner</h1>}
+
       {content == "Volunteer Content." || content == "Admin Content." ? (
         <div>
           <h1>Open Calls</h1>
           {errorMes && <h2>{errorMes}</h2>}
 
-          {isLoading && <h1 className="">Spinner</h1>}
+          {isLoading && <h1 className="spinner">Spinner</h1>}
           {setCallsArr.length && (
             <div className="card-group">
               {callsArr.map(

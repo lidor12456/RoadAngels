@@ -50,7 +50,7 @@ function Call() {
     <div className="ec main">
       <h1>Edit Call</h1>
       <div className="ec card-group mb-10">
-        {isLoading && <h1 className="">Spinner</h1>}
+        {isLoading && <h1 className="spinner">Spinner</h1>}
         {errorMes && <h2>{errorMes}</h2>}
         {callObj && (
           <div className="ec mb-10">

@@ -75,6 +75,8 @@ function Volunteers() {
 
   return (
     <div className="vs card-group main-container">
+      {isLoading && <h1 className="spinner">Spinner</h1>}
+
       {content == "Volunteer Content." || content == "Admin Content." ? (
         <div>
           <h1>Volunteers</h1>
