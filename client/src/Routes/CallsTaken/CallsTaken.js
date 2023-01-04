@@ -13,11 +13,13 @@ import UserService from "../../services/user.service";
 import AuthService from "../../services/auth.service";
 
 import EventBus from "../../common/EventBus";
+import ComingSoon from "../ComingSoon/ComingSoon";
 
 function CallsTaken() {
   const [currentUser, setCurrentUser] = useState(undefined);
   const [content, setContent] = useState("");
   const [callsArr, setCallsArr] = useState([]);
+  const [complete, setComplete] = useState(false);
   // const [callsArr, setCallsArr] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -109,18 +111,24 @@ function CallsTaken() {
 
   return (
     <div>
-      {isLoading && <h1 className="spinner">Spinner</h1>}
-      {errorMes && <h2>{errorMes}</h2>}
-
-      {content == "Volunteer Content." || content == "Admin Content." ? (
+      {complete ? (
         <div>
-          {callsArr &&
-            callsArr.map((call) => {
-              return <p>{call}</p>;
-            })}
+          {isLoading && <h1 className="spinner">Spinner</h1>}
+          {errorMes && <h2>{errorMes}</h2>}
+
+          {content == "Volunteer Content." || content == "Admin Content." ? (
+            <div>
+              {callsArr &&
+                callsArr.map((call) => {
+                  return <p>{call}</p>;
+                })}
+            </div>
+          ) : (
+            "no access"
+          )}
         </div>
       ) : (
-        "no access"
+        <ComingSoon />
       )}
     </div>
   );
