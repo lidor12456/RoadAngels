@@ -94,7 +94,7 @@ const Register = () => {
   };
 
   const handleRegister = (e) => {
-    setIsLoading(true);
+    // setIsLoading(true);
 
     e.preventDefault();
 
@@ -114,7 +114,7 @@ const Register = () => {
         region
       ).then(
         (response) => {
-          setIsLoading(false);
+          // setIsLoading(false);
           setMessage(response.data.message);
           setSuccessful(true);
         },
