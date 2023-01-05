@@ -9,3 +9,9 @@
     text-align: center;
 
 }
+@media only screen and (max-width: 768px) {
+    .navbar  {
+    flex-direction: column;
+    margin: 0;
+    }
+  }

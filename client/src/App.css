@@ -99,12 +99,7 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-@media only screen and (max-width: 768px) {
-  .navbar .navbar-expand .navbar-dark  {
-    margin: 10%;
-    flex-direction: column;
-  }
-}
+
 
 
 .App-header {
