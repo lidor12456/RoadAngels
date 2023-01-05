@@ -90,7 +90,7 @@ function OpenCallsVal() {
     try {
       setIsLoading(true);
       const { data } = await axios.put(
-        "https://roadangels.onrender.com/api/updateuserarray/${userId}",
+        `https://roadangels.onrender.com/api/updateuserarray/${userId}`,
 
         // `http://localhost:5000/api/updateuserarray/${userId}`,
         { takenCalls: callId }
@@ -99,6 +99,7 @@ function OpenCallsVal() {
       setCallsArr((prev) => {
         return prev.filter(({ _id }) => _id !== callId);
       });
+      // test
       setIsLoading(false);
     } catch (e) {
       setErrorMes(e.message);

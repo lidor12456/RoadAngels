@@ -10,8 +10,20 @@
 
 }
 @media only screen and (max-width: 768px) {
+    * {
+        text-align: center !important;
+    }
+    .figure-u img {
+        height: 250px !important;
+        width: 350px !important;
+    }
     .navbar  {
     flex-direction: column;
     margin: 0;
     }
+    .btn {
+        width: 100%;
+        margin-left: -2% !important;
+    }
+
   }
