@@ -149,7 +149,6 @@ function OpenCallsVal() {
                     city,
                     region,
                     isDeleted,
-                    test,
                   },
                   mapIndex
                 ) => (
@@ -157,7 +156,6 @@ function OpenCallsVal() {
                     {/* {console.log(callsArr)} */}
                     <div className="ocv card mb-10" key={_id}>
                       <p> Subject - {subject}</p>
-                      <p> Test - {test}</p>
                       <p> Name - {name}</p>
                       <p> Mail - {mail}</p>
                       <p> Phone - {phone}</p>

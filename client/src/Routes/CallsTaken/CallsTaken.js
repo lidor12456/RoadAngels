@@ -19,43 +19,64 @@ function CallsTaken() {
   const [currentUser, setCurrentUser] = useState(undefined);
   const [content, setContent] = useState("");
   const [callsArr, setCallsArr] = useState([]);
-  const [complete, setComplete] = useState(false);
-  // const [callsArr, setCallsArr] = useState([]);
-
+  const [complete, setComplete] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMes, setErrorMes] = useState(null);
 
+  let userCalls = [];
+  const getCurrentUser = async () => {
+    setCurrentUser(JSON.parse(localStorage.getItem("user")));
+    console.log(currentUser);
+    console.log(currentUser.id);
+    let { data } = await axios.get(
+      `http://localhost:5000/api/users/${currentUser.id}`
+      // "http://localhost:5000/api/users/${currentUser.id}"
+    );
+    console.log(data);
+    setCallsArr(data[takenCalls]);
+    console.log(callsArr);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
+      // try {
+      //   const user = await getCurrentUser();
+
+      //   console.log(user);
+      //   setIsLoading(true);
+      // } catch (e) {
+      //   setErrorMes(e.message);
+      //   console.log(e.message);
+      // }
       try {
-        const user = AuthService.getCurrentUser();
-        if (user) {
-          setCurrentUser(user);
-        }
-        setIsLoading(true);
+        setCurrentUser(JSON.parse(localStorage.getItem("user")));
         console.log(currentUser);
-        const { data } = await axios.get(
-          `http://localhost:5000/api/users/${currentUser.id}`
-          // "http://localhost:5000/api/users/${currentUser.id}"
-        );
+        // console.log(currentUser.id);
+
+        // let { data } = await axios.get(
+        //   `http://localhost:5000/api/users/${currentUser.id}`
+        //   // "http://localhost:5000/api/users/${currentUser.id}"
+        // );
         // console.log(data);
+        // setCallsArr(data.takenCalls);
+        // setIsLoading(false);
 
-        setCallsArr(data.takenCalls);
-        setIsLoading(false);
         const test = callsArr[1];
-        // JSON.parse(test);
-        console.log(callsArr);
-        console.log(test);
-        const userCalls = [];
-        // for (let i = 0; i < callsArr.length; i++) {
-        const { userCallsData } = await axios.get(
-          `http://localhost:5000/api/calls/${test}`
-          // "http://localhost:5000/api/calls/${currentUser.id}"
-        );
-        userCalls.push(userCallsData);
 
+        // console.log(data);
+        // console.log(callsArr);
+        console.log(test);
+
+        // for (let i = 0; i < callsArr.length; i++) {
+        //   let { data } = await axios.get(
+        //     `http://localhost:5000/api/calls/${test}`
+        //     // "http://localhost:5000/api/calls/${currentUser.id}"
+        //   );
+        //   userCalls.push(data);
+        //   setCallsArr(userCalls);
         // }
         console.log(userCalls);
+        console.log(callsArr);
       } catch (e) {
         setErrorMes(e.message);
         console.log(e.message);
@@ -113,15 +134,36 @@ function CallsTaken() {
     <div>
       {complete ? (
         <div>
+          <button onClick={() => getCurrentUser()}>a</button>
           {isLoading && <h1 className="spinner">Spinner</h1>}
           {errorMes && <h2>{errorMes}</h2>}
 
           {content == "Volunteer Content." || content == "Admin Content." ? (
             <div>
               {callsArr &&
-                callsArr.map((call) => {
-                  return <p>{call}</p>;
-                })}
+                userCalls.map(
+                  ({
+                    _id,
+                    name,
+                    openingTime,
+                    subject,
+                    mail,
+                    phone,
+                    city,
+                    region,
+                    isDeleted,
+                  }) => {
+                    return (
+                      <div>
+                        {/* <p>{call._id}</p> */}
+                        <p>{subject}</p>
+                        <p>{name}</p>
+                        <p>{phone}</p>
+                        <p>{city}</p>
+                      </div>
+                    );
+                  }
+                )}
             </div>
           ) : (
             "no access"
