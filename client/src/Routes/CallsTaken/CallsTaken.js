@@ -32,8 +32,9 @@ function CallsTaken() {
       `http://localhost:5000/api/users/${currentUser.id}`
       // "http://localhost:5000/api/users/${currentUser.id}"
     );
-    console.log(data);
-    setCallsArr(data[takenCalls]);
+    console.log(data.takenCalls);
+    setCallsArr(data.takenCalls);
+
     console.log(callsArr);
   };
 
@@ -141,25 +142,29 @@ function CallsTaken() {
           {content == "Volunteer Content." || content == "Admin Content." ? (
             <div>
               {callsArr &&
-                userCalls.map(
-                  ({
-                    _id,
-                    name,
-                    openingTime,
-                    subject,
-                    mail,
-                    phone,
-                    city,
-                    region,
-                    isDeleted,
-                  }) => {
+                callsArr.map(
+                  (
+                    a
+                    //   {
+                    //   _id,
+                    //   name,
+                    //   openingTime,
+                    //   subject,
+                    //   mail,
+                    //   phone,
+                    //   city,
+                    //   region,
+                    //   isDeleted,
+                    // }
+                  ) => {
                     return (
                       <div>
                         {/* <p>{call._id}</p> */}
-                        <p>{subject}</p>
+                        {/* <p>{subject}</p>
                         <p>{name}</p>
                         <p>{phone}</p>
-                        <p>{city}</p>
+                        <p>{city}</p> */}
+                        <p>{a}</p>
                       </div>
                     );
                   }
