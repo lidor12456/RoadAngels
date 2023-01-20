@@ -25,89 +25,70 @@ function CallsTaken() {
   const [errorMes, setErrorMes] = useState(null);
 
   let userCalls = [];
-  const getCurrentUser = async () => {
-    setCurrentUser(JSON.parse(localStorage.getItem("user")));
-    console.log(currentUser);
-    console.log(currentUser.id);
-    let { data } = await axios.get(
-      `http://localhost:5000/api/users/${currentUser.id}`
-      // "http://localhost:5000/api/users/${currentUser.id}"
-    );
-    console.log(data.takenCalls);
-    setCallsArr(data.takenCalls);
+  // const getCurrentUser = async () => {
+  //   setCurrentUser(JSON.parse(localStorage.getItem("user")));
+  //   console.log(currentUser);
+  //   console.log(currentUser.id);
+  //   let { data } = await axios.get(
+  //     `http://localhost:5000/api/users/${currentUser.id}`
+  //     // "http://localhost:5000/api/users/${currentUser.id}"
+  //   );
+  //   console.log(data.takenCalls);
+  //   setCallsArr(data.takenCalls);
 
-    console.log(callsArr);
-  };
+  //   console.log(callsArr);
+  // };
 
-  const getCalls = async () => {
-    let userCalls = [];
-    for (let i = 0; i < callsArr.length; i++) {
-      let { data } = await axios.get(
-        `http://localhost:5000/api/calls/${callsArr[i]}`
-        // "http://localhost:5000/api/calls/${currentUser.id}"
-      );
-      // console.log(data);
+  // const getCalls = async () => {
+  //   let userCalls = [];
+  //   for (let i = 0; i < callsArr.length; i++) {
+  //     let { data } = await axios.get(
+  //       `http://localhost:5000/api/calls/${callsArr[i]}`
+  //       // "http://localhost:5000/api/calls/${currentUser.id}"
+  //     );
+  //     // console.log(data);
 
-      userCalls.push(data);
-    }
-    setFullCallsArr(userCalls);
-    console.log(userCalls);
-  };
+  //     userCalls.push(data);
+  //   }
+  //   setFullCallsArr(userCalls);
+  //   console.log(userCalls);
+  // };
 
   useEffect(() => {
     const fetchData = async () => {
-      // try {
-      //   const user = await getCurrentUser();
-
-      //   console.log(user);
-      //   setIsLoading(true);
-      // } catch (e) {
-      //   setErrorMes(e.message);
-      //   console.log(e.message);
-      // }
-      try {
+      const getCurrentUser = async () => {
         setCurrentUser(JSON.parse(localStorage.getItem("user")));
         console.log(currentUser);
-        // console.log(currentUser.id);
+        console.log(currentUser.id);
+        let { data } = await axios.get(
+          `http://localhost:5000/api/users/${currentUser.id}`
+          // "http://localhost:5000/api/users/${currentUser.id}"
+        );
+        // console.log(data.takenCalls);
+        setCallsArr(data.takenCalls);
 
-        // let { data } = await axios.get(
-        //   `http://localhost:5000/api/users/${currentUser.id}`
-        //   // "http://localhost:5000/api/users/${currentUser.id}"
-        // );
-        // console.log(data);
-        // setCallsArr(data.takenCalls);
-        // setIsLoading(false);
-
-        const test = callsArr[1];
-
-        // console.log(data);
         // console.log(callsArr);
-        console.log(test);
+      };
+      getCurrentUser();
 
-        // for (let i = 0; i < callsArr.length; i++) {
-        //   let { data } = await axios.get(
-        //     `http://localhost:5000/api/calls/${test}`
-        //     // "http://localhost:5000/api/calls/${currentUser.id}"
-        //   );
-        //   userCalls.push(data);
-        //   setCallsArr(userCalls);
-        // }
-        console.log(userCalls);
-        console.log(callsArr);
-      } catch (e) {
-        setErrorMes(e.message);
-        console.log(e.message);
-      }
+      const getCalls = async () => {
+        let userCalls = [];
+        for (let i = 0; i < callsArr.length; i++) {
+          let { data } = await axios.get(
+            `http://localhost:5000/api/calls/${callsArr[i]}`
+            // "http://localhost:5000/api/calls/${currentUser.id}"
+          );
+          // console.log(data);
 
-      // await axios.get(
-      //   `http://localhost:5000/api/users/${currentUser.id}`
-      //   // "http://localhost:5000/api/users/${currentUser.id}"
-      // );
-
+          userCalls.push(data);
+        }
+        setFullCallsArr(userCalls);
+        // console.log(userCalls);
+      };
+      getCalls();
       UserService.getModeratorBoard().then(
         (response) => {
           setContent(response.data);
-          // console.log(response);
         },
         (error) => {
           const _content =
@@ -144,20 +125,19 @@ function CallsTaken() {
         }
       );
     };
+
     fetchData();
-  }, []);
+  }, [fullCallsArr]);
 
   return (
     <div>
       {complete ? (
         <div>
-          <button onClick={() => getCurrentUser()}>a</button>
-          <button onClick={() => getCalls()}>b</button>
           {isLoading && <h1 className="spinner">Spinner</h1>}
           {errorMes && <h2>{errorMes}</h2>}
 
           {content == "Volunteer Content." || content == "Admin Content." ? (
-            <div>
+            <div className="card-group">
               {fullCallsArr &&
                 fullCallsArr.map(
                   ({
@@ -172,12 +152,14 @@ function CallsTaken() {
                     isDeleted,
                   }) => {
                     return (
-                      <div>
-                        {/* <p>{call._id}</p> */}
-                        <p>{subject}</p>
-                        {/* <p>{name}</p>
-                        <p>{phone}</p>
-                        <p>{city}</p> */}
+                      <div className="card-group mb-10">
+                        <div className="card mb-10" key={_id}>
+                          {/* <p>{call._id}</p> */}
+                          <p>{subject}</p>
+                          <p>{name}</p>
+                          <p>{phone}</p>
+                          <p>{city}</p>
+                        </div>
                       </div>
                     );
                   }
