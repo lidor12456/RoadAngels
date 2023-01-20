@@ -19,6 +19,7 @@ function CallsTaken() {
   const [currentUser, setCurrentUser] = useState(undefined);
   const [content, setContent] = useState("");
   const [callsArr, setCallsArr] = useState([]);
+  const [fullCallsArr, setFullCallsArr] = useState([]);
   const [complete, setComplete] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMes, setErrorMes] = useState(null);
@@ -36,6 +37,21 @@ function CallsTaken() {
     setCallsArr(data.takenCalls);
 
     console.log(callsArr);
+  };
+
+  const getCalls = async () => {
+    let userCalls = [];
+    for (let i = 0; i < callsArr.length; i++) {
+      let { data } = await axios.get(
+        `http://localhost:5000/api/calls/${callsArr[i]}`
+        // "http://localhost:5000/api/calls/${currentUser.id}"
+      );
+      // console.log(data);
+
+      userCalls.push(data);
+    }
+    setFullCallsArr(userCalls);
+    console.log(userCalls);
   };
 
   useEffect(() => {
@@ -136,35 +152,32 @@ function CallsTaken() {
       {complete ? (
         <div>
           <button onClick={() => getCurrentUser()}>a</button>
+          <button onClick={() => getCalls()}>b</button>
           {isLoading && <h1 className="spinner">Spinner</h1>}
           {errorMes && <h2>{errorMes}</h2>}
 
           {content == "Volunteer Content." || content == "Admin Content." ? (
             <div>
-              {callsArr &&
-                callsArr.map(
-                  (
-                    a
-                    //   {
-                    //   _id,
-                    //   name,
-                    //   openingTime,
-                    //   subject,
-                    //   mail,
-                    //   phone,
-                    //   city,
-                    //   region,
-                    //   isDeleted,
-                    // }
-                  ) => {
+              {fullCallsArr &&
+                fullCallsArr.map(
+                  ({
+                    _id,
+                    name,
+                    openingTime,
+                    subject,
+                    mail,
+                    phone,
+                    city,
+                    region,
+                    isDeleted,
+                  }) => {
                     return (
                       <div>
                         {/* <p>{call._id}</p> */}
-                        {/* <p>{subject}</p>
-                        <p>{name}</p>
+                        <p>{subject}</p>
+                        {/* <p>{name}</p>
                         <p>{phone}</p>
                         <p>{city}</p> */}
-                        <p>{a}</p>
                       </div>
                     );
                   }
