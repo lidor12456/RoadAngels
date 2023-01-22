@@ -7,6 +7,15 @@ import "./OpenNewCall.css";
 function OpenNewCall() {
   const [detailsObj, setDetailsObj] = useState({});
   const [citiesState, setCitiesState] = useState("");
+  const [regionsState, setRegionsState] = useState([
+    "יהודה ושומרון",
+    "דרום",
+    "ירושלים",
+    "מרכז",
+    "תל אביב",
+    "חיפה",
+    "צפון",
+  ]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMes, setErrorMes] = useState(null);
   const navigate = useNavigate();
@@ -22,7 +31,7 @@ function OpenNewCall() {
       );
 
       setIsLoading(false);
-      // TODO: NAVIGATE TO SOMEWHERE ELSE MORE USEFUL
+
       navigate("/");
     } catch (e) {
       setErrorMes(e.message);
@@ -116,36 +125,53 @@ function OpenNewCall() {
             ></input>
           </p>
 
-          <p>
+          <p className="dropdown">
             City -
-            <select
-              onChange={({ target: { value } }) => {
-                setDetailsObj((prev) => {
-                  const updateState = { ...prev };
+            <p>
+              <select
+                onChange={({ target: { value } }) => {
+                  setDetailsObj((prev) => {
+                    const updateState = { ...prev };
 
-                  updateState.city = value;
-                  console.log(updateState);
-                  return updateState;
-                });
-              }}
-            >
-              <option value="Select City ⬇️">-- Select city --</option>
+                    updateState.city = value.trim();
+                    console.log(updateState);
+                    return updateState;
+                  });
+                }}
+              >
+                <option value="Select City"> Select City </option>
 
-              {citiesState &&
-                citiesState.map((city) => <option value={city}>{city}</option>)}
-            </select>
-            {/* <input
-              onChange={({ target: { value } }) => {
-                setDetailsObj((prev) => {
-                  const updateState = { ...prev };
-
-                  updateState.city = value;
-                  return updateState;
-                });
-              }}
-            ></input> */}
+                {citiesState &&
+                  citiesState.map((city) => (
+                    <option value={city}>{city}</option>
+                  ))}
+              </select>
+            </p>
           </p>
-          <p>
+          <p className="dropdown">
+            Region -
+            <p>
+              <select
+                onChange={({ target: { value } }) => {
+                  setDetailsObj((prev) => {
+                    const updateState = { ...prev };
+
+                    updateState.region = value;
+                    console.log(updateState);
+                    return updateState;
+                  });
+                }}
+              >
+                <option value="Select Region"> Select Region </option>
+
+                {regionsState &&
+                  regionsState.map((region) => (
+                    <option value={region}>{region}</option>
+                  ))}
+              </select>
+            </p>
+          </p>
+          {/* <p>
             {" "}
             Region -{" "}
             <input
@@ -158,7 +184,7 @@ function OpenNewCall() {
                 });
               }}
             ></input>
-          </p>
+          </p> */}
         </div>
       </div>
       <button

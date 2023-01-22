@@ -9,6 +9,8 @@
 .oc h1 {
     color: rgb(5, 0, 0);
     background-color: rgba(240, 248, 255, 0.076);
+    text-align: center;
+
 }
 .oc.main-container {
     margin:0;
