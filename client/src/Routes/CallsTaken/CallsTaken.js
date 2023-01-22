@@ -24,36 +24,6 @@ function CallsTaken() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMes, setErrorMes] = useState(null);
 
-  let userCalls = [];
-  // const getCurrentUser = async () => {
-  //   setCurrentUser(JSON.parse(localStorage.getItem("user")));
-  //   console.log(currentUser);
-  //   console.log(currentUser.id);
-  //   let { data } = await axios.get(
-  //     `http://localhost:5000/api/users/${currentUser.id}`
-  //     // "http://localhost:5000/api/users/${currentUser.id}"
-  //   );
-  //   console.log(data.takenCalls);
-  //   setCallsArr(data.takenCalls);
-
-  //   console.log(callsArr);
-  // };
-
-  // const getCalls = async () => {
-  //   let userCalls = [];
-  //   for (let i = 0; i < callsArr.length; i++) {
-  //     let { data } = await axios.get(
-  //       `http://localhost:5000/api/calls/${callsArr[i]}`
-  //       // "http://localhost:5000/api/calls/${currentUser.id}"
-  //     );
-  //     // console.log(data);
-
-  //     userCalls.push(data);
-  //   }
-  //   setFullCallsArr(userCalls);
-  //   console.log(userCalls);
-  // };
-
   useEffect(() => {
     const fetchData = async () => {
       const getCurrentUser = async () => {
@@ -76,7 +46,7 @@ function CallsTaken() {
         for (let i = 0; i < callsArr.length; i++) {
           let { data } = await axios.get(
             `http://localhost:5000/api/calls/${callsArr[i]}`
-            // "http://localhost:5000/api/calls/${currentUser.id}"
+            // "http://localhost:5000/api/calls/${callsArr[i]}"
           );
           // console.log(data);
 
@@ -131,12 +101,12 @@ function CallsTaken() {
 
   return (
     <div>
-      {complete ? (
-        <div>
-          {isLoading && <h1 className="spinner">Spinner</h1>}
-          {errorMes && <h2>{errorMes}</h2>}
+      <div>
+        {isLoading && <h1 className="spinner">Spinner</h1>}
+        {errorMes && <h2>{errorMes}</h2>}
 
-          {content == "Volunteer Content." || content == "Admin Content." ? (
+        {content == "Volunteer Content." || content == "Admin Content." ? (
+          <div className="oc card-group main-container">
             <div className="card-group">
               {fullCallsArr &&
                 fullCallsArr.map(
@@ -153,25 +123,24 @@ function CallsTaken() {
                   }) => {
                     return (
                       <div className="card-group mb-10">
-                        <div className="card mb-10" key={_id}>
-                          {/* <p>{call._id}</p> */}
-                          <p>{subject}</p>
-                          <p>{name}</p>
-                          <p>{phone}</p>
-                          <p>{city}</p>
+                        <div className="oc card mb-10" key={_id}>
+                          <p> Subject - {subject}</p>
+                          <p> Name - {name}</p>
+                          <p> Mail - {mail}</p>
+                          <p> Phone - {phone}</p>
+                          <p> City - {city}</p>
+                          <p> Region - {region}</p>
                         </div>
                       </div>
                     );
                   }
                 )}
             </div>
-          ) : (
-            "no access"
-          )}
-        </div>
-      ) : (
-        <ComingSoon />
-      )}
+          </div>
+        ) : (
+          "no access"
+        )}
+      </div>
     </div>
   );
 }

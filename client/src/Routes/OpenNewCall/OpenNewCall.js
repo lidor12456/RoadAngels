@@ -6,6 +6,7 @@ import "./OpenNewCall.css";
 //
 function OpenNewCall() {
   const [detailsObj, setDetailsObj] = useState({});
+  const [citiesState, setCitiesState] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMes, setErrorMes] = useState(null);
   const navigate = useNavigate();
@@ -27,6 +28,21 @@ function OpenNewCall() {
       setErrorMes(e.message);
     }
   };
+  useEffect(() => {
+    const govData = async () => {
+      const { data } = await axios.get(
+        "https://data.gov.il/api/3/action/datastore_search?resource_id=d4901968-dad3-4845-a9b0-a57d027f11ab",
+        {
+          params: { q: "", language: "english", limit: 3200 },
+          responseType: "json",
+        }
+      );
+
+      let citiesNamesArr = data.result.records.map((city) => city.שם_ישוב);
+      setCitiesState(citiesNamesArr);
+    };
+    govData();
+  }, []);
 
   return (
     <div className="open-call-form col-md-12">
@@ -101,9 +117,24 @@ function OpenNewCall() {
           </p>
 
           <p>
-            {" "}
-            City -{" "}
-            <input
+            City -
+            <select
+              onChange={({ target: { value } }) => {
+                setDetailsObj((prev) => {
+                  const updateState = { ...prev };
+
+                  updateState.city = value;
+                  console.log(updateState);
+                  return updateState;
+                });
+              }}
+            >
+              <option value="Select City ⬇️">-- Select city --</option>
+
+              {citiesState &&
+                citiesState.map((city) => <option value={city}>{city}</option>)}
+            </select>
+            {/* <input
               onChange={({ target: { value } }) => {
                 setDetailsObj((prev) => {
                   const updateState = { ...prev };
@@ -112,7 +143,7 @@ function OpenNewCall() {
                   return updateState;
                 });
               }}
-            ></input>
+            ></input> */}
           </p>
           <p>
             {" "}

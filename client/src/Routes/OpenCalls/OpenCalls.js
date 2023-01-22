@@ -79,15 +79,17 @@ function OpenCalls() {
     try {
       setIsLoading(true);
       const { data } = await axios.put(
-        "https://roadangels.onrender.com/api/updatecall/${id}",
+        `https://roadangels.onrender.com/api/updatecall/${id}`,
 
         // `http://localhost:5000/api/updatecall/${id}`,
         { isDeleted: true }
       );
-
-      setIsLoading(false);
+      if (data) {
+        setIsLoading(false);
+      }
     } catch (e) {
       setErrorMes(e.message);
+      console.log(e);
     }
   };
 
@@ -116,21 +118,19 @@ function OpenCalls() {
                     city,
                     region,
                     isDeleted,
-                    test,
                   },
                   mapIndex
                 ) => (
                   <div className="card-group mb-10">
                     {console.log(callsArr)}
                     <div className="oc card mb-10" key={_id}>
-                      <p> subject - {subject}</p>
-                      <p> test - {test}</p>
+                      <p> Subject - {subject}</p>
                       <p> Name - {name}</p>
-                      <p> mail - {mail}</p>
-                      <p> phone - {phone}</p>
-                      <p> city - {city}</p>
-                      <p> region - {region}</p>
-                      <p> region - {isDeleted}</p>
+                      <p> Mail - {mail}</p>
+                      <p> Phone - {phone}</p>
+                      <p> City - {city}</p>
+                      <p> Region - {region}</p>
+                      {/* <p> Deleted? - {isDeleted}</p> */}
                       <small class="text-muted mb-3">
                         <p>Opening Time - {openingTime}</p>
                       </small>
@@ -150,7 +150,7 @@ function OpenCalls() {
                             isLoading && <h1 className="">Spinner</h1>;
                           }
                           handlerDelete(_id);
-                          window.location.reload(false);
+                          // window.location.reload(false);
                         }}
                       >
                         Delete
