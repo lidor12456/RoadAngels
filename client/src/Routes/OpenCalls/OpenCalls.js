@@ -84,12 +84,14 @@ function OpenCalls() {
         // `http://localhost:5000/api/updatecall/${id}`,
         { isDeleted: true }
       );
-      if (data) {
-        setIsLoading(false);
-      }
+
+      setIsLoading(false);
+      setCallsArr((prev) => {
+        return prev.filter(({ _id }) => _id !== id);
+      });
     } catch (e) {
       setErrorMes(e.message);
-      console.log(e);
+      console.log(e.message);
     }
   };
 
