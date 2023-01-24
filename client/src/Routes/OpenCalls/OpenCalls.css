@@ -1,4 +1,19 @@
 
+.filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    
+    background-color: #212529
+}
+.filter-bar p {
+margin: 1% 1%;
+color: rgb(255, 255, 255,0.55);
+}
+.filter-bar select {
+    margin-right:10px;
+    margin-left:10px;
+}
 
     .oc.card-group{
     

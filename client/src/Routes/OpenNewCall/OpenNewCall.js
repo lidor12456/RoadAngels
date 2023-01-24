@@ -37,6 +37,17 @@ function OpenNewCall() {
       setErrorMes(e.message);
     }
   };
+
+  const changeStrToCapitalize = (str) => {
+    const arr = str.split(" ");
+
+    for (let i = 0; i < arr.length; i++) {
+      arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+    }
+
+    str = arr.join(" ");
+    return str;
+  };
   useEffect(() => {
     const govData = async () => {
       const { data } = await axios.get(
@@ -46,9 +57,18 @@ function OpenNewCall() {
           responseType: "json",
         }
       );
+      console.log(data);
 
-      let citiesNamesArr = data.result.records.map((city) => city.שם_ישוב);
-      setCitiesState(citiesNamesArr);
+      let citiesNamesArr = await data.result.records.map((city) =>
+        city.שם_ישוב_לועזי.toLowerCase().trim()
+      );
+      let capitalizeNames = [];
+      for (let i = 0; i < citiesNamesArr.length; i++) {
+        citiesNamesArr[i] = changeStrToCapitalize(citiesNamesArr[i]);
+        capitalizeNames.push(citiesNamesArr[i]);
+      }
+      console.log(capitalizeNames);
+      setCitiesState(citiesNamesArr.sort());
     };
     govData();
   }, []);

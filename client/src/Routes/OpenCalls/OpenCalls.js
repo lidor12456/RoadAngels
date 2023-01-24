@@ -32,6 +32,17 @@ function OpenCalls() {
   const [errorMes, setErrorMes] = useState(null);
   const navigate = useNavigate();
 
+  const changeStrToCapitalize = (str) => {
+    const arr = str.split(" ");
+
+    for (let i = 0; i < arr.length; i++) {
+      arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+    }
+
+    str = arr.join(" ");
+    return str;
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -96,8 +107,16 @@ function OpenCalls() {
         }
       );
 
-      let citiesNamesArr = data.result.records.map((city) => city.שם_ישוב);
-      setCitiesNamesState(citiesNamesArr);
+      let citiesNamesArr = data.result.records.map((city) =>
+        city.שם_ישוב_לועזי.toLowerCase().trim()
+      );
+      let capitalizeNames = [];
+      for (let i = 0; i < citiesNamesArr.length; i++) {
+        citiesNamesArr[i] = changeStrToCapitalize(citiesNamesArr[i]);
+        capitalizeNames.push(citiesNamesArr[i]);
+      }
+      console.log(capitalizeNames);
+      setCitiesNamesState(citiesNamesArr.sort());
     };
     govData();
   }, []);
@@ -134,9 +153,9 @@ function OpenCalls() {
 
   return (
     <>
-      <p className="dropdown">
-        City -
-        <p>
+      <div className="filter-bar">
+        <p className="">
+          City
           <select
             onChange={({ target: { value } }) => {
               setCityChoose(value);
@@ -149,11 +168,17 @@ function OpenCalls() {
                 <option value={city}>{city}</option>
               ))}
           </select>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              handlerFilter("city", cityChoose.trim());
+            }}
+          >
+            Filter By City
+          </button>
         </p>
-      </p>
-      <p className="dropdown">
-        Region -
-        <p>
+        <p className="">
+          Region
           <select
             onChange={({ target: { value } }) => {
               setRegionChoose(value);
@@ -166,22 +191,17 @@ function OpenCalls() {
                 <option value={region}>{region}</option>
               ))}
           </select>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              handlerFilter("region", regionChoose);
+            }}
+          >
+            Filter By Region
+          </button>
         </p>
-      </p>
-      <button
-        onClick={() => {
-          handlerFilter("region", regionChoose);
-        }}
-      >
-        filter by region
-      </button>
-      <button
-        onClick={() => {
-          handlerFilter("city", cityChoose.trim());
-        }}
-      >
-        filter by city
-      </button>
+      </div>
+
       <div className="oc card-group main-container">
         {console.log(content)}
         {isLoading && <h1 className="spinner">Spinner</h1>}
@@ -190,8 +210,6 @@ function OpenCalls() {
           <div>
             <h1>Open Calls</h1>
             {errorMes && <h2>{errorMes}</h2>}
-
-            {isLoading && <h1 className="spinner">Spinner</h1>}
             {setManipulateCallsArr.length && (
               <div className="card-group">
                 {manipulateCallsArr.map(
@@ -238,7 +256,6 @@ function OpenCalls() {
                               isLoading && <h1 className="">Spinner</h1>;
                             }
                             handlerDelete(_id);
-                            // window.location.reload(false);
                           }}
                         >
                           Delete

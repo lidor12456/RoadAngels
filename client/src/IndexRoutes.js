@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route, Link, useParams, Navigate } from "react-router-dom";
-import OpenNewCall from "./Routes/OpenNewCall/OpenNewCall";
 
+import OpenNewCall from "./Routes/OpenNewCall/OpenNewCall";
 import OpenCalls from "./Routes/OpenCalls/OpenCalls";
 import OpenCallsVal from "./Routes/OpenCallsVal/OpenCallsVal";
 import CallsTaken from "./Routes/CallsTaken/CallsTaken";
@@ -11,10 +11,10 @@ import E404 from "./Routes/E404/E404";
 import VolunteerPage from "./Routes/VolunteerPage/VolunteerPage";
 import AddVolunteer from "./Routes/AddVolunteer/AddVolunteer";
 import Call from "./Routes/Call/Call";
+import MapRoute from "./Routes/MapRoute/MapRoute";
 
 import Login from "./Component/Login/Login";
 import Register from "./Component/Register/Register";
-
 import Profile from "./Component/Profile";
 import BoardUser from "./Component/Boards/BoardUser";
 import BoardModerator from "./Component/Boards/BoardModerator";
@@ -26,6 +26,7 @@ function IndexRoutes() {
       <Route path="/" element={<HomePage />} />
 
       <Route path="/login" element={<Login />} />
+      <Route path="/map" element={<MapRoute />} />
       <Route path="/opennewcall" element={<OpenNewCall />} />
       <Route path="/opencalls" element={<OpenCalls />} />
       <Route path="/opencallsval" element={<OpenCallsVal />} />
