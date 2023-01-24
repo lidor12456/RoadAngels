@@ -8,9 +8,9 @@ import {
   useNavigate,
 } from "react-router-dom";
 import axios from "axios";
-import "./OpenCalls.css";
 import UserService from "../../services/user.service";
 import EventBus from "../../common/EventBus";
+import "./OpenCalls.css";
 
 function OpenCalls() {
   const [content, setContent] = useState("");
