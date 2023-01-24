@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import AuthService from "../../services/auth.service";
-
 import EventBus from "../../common/EventBus";
-// import OpenNewCall from "../../Routes/OpenNewCall/OpenNewCall";
-// import GeneralNav from "../GeneralNav/GeneralNav";
-// import AdminNav from "../AdminNav/AdminNav";
-// import VolunteerNav from "../VolunteerNav/VolunteerNav";
 
-const TestLogin = () => {
+const ContentManager = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -45,9 +39,6 @@ const TestLogin = () => {
 
   return (
     <div>
-      {/* {isAdminLogged && <AdminNav />}
-      {isVolunteerLogged && <VolunteerNav />}
-      {!isVolunteerLogged && !isAdminLogged ? <GeneralNav /> : ""} */}
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <Link to={"/"} className="navbar-brand">
           RoadAngle
@@ -124,4 +115,4 @@ const TestLogin = () => {
   );
 };
 
-export default TestLogin;
+export default ContentManager;

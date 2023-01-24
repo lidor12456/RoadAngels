@@ -10,6 +10,7 @@ import {
 import axios from "axios";
 import UserService from "../../services/user.service";
 import EventBus from "../../common/EventBus";
+import E404 from "../E404/E404";
 import "./OpenCalls.css";
 
 function OpenCalls() {
@@ -208,7 +209,19 @@ function OpenCalls() {
 
         {content == "Volunteer Content." || content == "Admin Content." ? (
           <div>
-            <h1>Open Calls</h1>
+            <h1>
+              Open Calls
+              <button
+                className="btn btn-primary"
+                style={{ marginLeft: "2%" }}
+                onClick={() => {
+                  navigate("/map");
+                }}
+              >
+                Show Calls On Map
+              </button>
+            </h1>
+
             {errorMes && <h2>{errorMes}</h2>}
             {setManipulateCallsArr.length && (
               <div className="card-group">

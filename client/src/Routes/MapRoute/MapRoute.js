@@ -7,10 +7,13 @@ import {
   Marker,
   Popup,
   useMapEvents,
+  Rectangle,
 } from "react-leaflet";
 import axios from "axios";
 import UserService from "../../services/user.service";
 import EventBus from "../../common/EventBus";
+import E404 from "../E404/E404";
+
 import "./mapRoute.css";
 import geoData from "./citiesGeoDataFromApi/geoData.json";
 
@@ -81,28 +84,34 @@ function MapRoute() {
   };
 
   return (
-    <div className="leaflet-container">
-      {/* {console.log(geoData)} */}
-      <MapContainer
-        center={{ lat: 31.7833, lng: 35.2167 }}
-        zoom={8}
-        scrollWheelZoom={false}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {callsArr &&
-          callsArr.map((call) => {
-            let goeData = findCityInGeo(call.city);
-            const position = [goeData.lat, goeData.lng];
-            console.log(position);
+    <>
+      {content == "Volunteer Content." || content == "Admin Content." ? (
+        <div className="leaflet-container">
+          {/* {console.log(geoData)} */}
+          <MapContainer
+            center={{ lat: 31.7833, lng: 35.2167 }}
+            zoom={8}
+            scrollWheelZoom={false}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            {callsArr &&
+              callsArr.map((call) => {
+                let goeData = findCityInGeo(call.city);
+                const position = [goeData.lat, goeData.lng];
+                console.log(position);
 
-            return <Marker key={goeData.lat} position={position} />;
-          })}
-        {/* <Marker position={["31.7833", "35.2167"]}></Marker>; */}
-      </MapContainer>
-    </div>
+                return <Marker key={goeData.lat} position={position} />;
+              })}
+            {/* <Marker position={["31.7833", "35.2167"]}></Marker>; */}
+          </MapContainer>
+        </div>
+      ) : (
+        <E404 />
+      )}
+    </>
   );
 }
 
