@@ -45,7 +45,7 @@ function CallsTaken() {
         let userCalls = [];
         for (let i = 0; i < callsArr.length; i++) {
           let { data } = await axios.get(
-            `http://localhost:5000/api/calls/${callsArr[i]}`
+            `http://https://roadangels.onrender.com/api/calls/${callsArr[i]}`
             // "http://localhost:5000/api/calls/${callsArr[i]}"
           );
           // console.log(data);
