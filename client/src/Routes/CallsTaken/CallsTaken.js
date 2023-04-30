@@ -31,7 +31,7 @@ function CallsTaken() {
         console.log(currentUser);
         console.log(currentUser.id);
         let { data } = await axios.get(
-          `http://localhost:5000/api/users/${currentUser.id}`
+          `http://https://roadangels.onrender.com/api/users/${currentUser.id}`
           // "http://localhost:5000/api/users/${currentUser.id}"
         );
         // console.log(data.takenCalls);
